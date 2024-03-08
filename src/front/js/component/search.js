@@ -80,7 +80,7 @@ export class Search extends React.Component {
 				</form>
 				<div className="row">
 					{this.state.books && this.state.books.map((book, index) => (
-						<div key={index} className="col-md-4">
+						<div key={index} className="col-md-3">
 							<Results book={book} />
 						</div>
 					))}
