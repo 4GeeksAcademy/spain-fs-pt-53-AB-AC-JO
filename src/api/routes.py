@@ -14,7 +14,7 @@ from flask_jwt_extended import JWTManager
 
 api = Blueprint('api', __name__)
 
-
+# Hay que modificar la URL de puerto 3000 (Nuestro front) en la línea 19 y 49
 # Allow CORS requests to this API
 CORS(api, resources={r"/api/*": {"origins": 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev'}})
 
