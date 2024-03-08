@@ -5,10 +5,10 @@ import "../../styles/home.css";
 import { Search } from "../component/search";
 
 
+
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 
-	
 	return (
 		<div className="text-center mt-5">
 			<h1>Hello Rigo!!</h1>
@@ -25,6 +25,7 @@ export const Home = () => {
 				</a>
 			</p>
 			<Search></Search>
+			
 		</div>
 	);
 };

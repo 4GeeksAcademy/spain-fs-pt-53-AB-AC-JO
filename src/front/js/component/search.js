@@ -1,8 +1,9 @@
 import React from 'react';
-
+import { Card, Button } from 'react-bootstrap';
 
 import { trackPromise } from 'react-promise-tracker';
-// import LoadingIndicator from './LoadingIndicator/LoadingIndicator';
+import { Results } from "./results"
+
 
 const apiKey = "AIzaSyCS2PIzm7JZBy6eR6K-WlJ45aWGcZRnwbo";
 const apiURL = "https://www.googleapis.com/books/v1/volumes";
@@ -11,7 +12,7 @@ const fields = "fields=items(volumeInfo(title,subtitle,authors,imageLinks(thumbn
 export class Search extends React.Component {
 	state = {
 		searchTerm: '',
-		
+
 	};
 
 	handleChange = event => {
@@ -29,9 +30,6 @@ export class Search extends React.Component {
 	fetchBooks = () => {
 		const getURL = `${apiURL}?key=${apiKey}&langRestrict=es,en&maxResults=5&orderBy=relevance&q=${this.state.searchTerm}&${fields}`;
 
-		// console.log(getURL);
-		// console.log(JSON.stringify(this.state.searchTerm, null, 2));
-
 		trackPromise(
 			fetch(getURL)
 				.then(res => {
@@ -44,11 +42,14 @@ export class Search extends React.Component {
 					return res.json();
 				})
 				.then(data => {
-					this.props.updateResults(data);
+					this.setState({
+						books: data.items,
+						error: null,
+					});
 				})
 				.catch(err => {
 					this.setState({
-						error: err.message
+						error: err.message,
 					});
 				})
 		);
@@ -77,7 +78,13 @@ export class Search extends React.Component {
 					</label>
 					<button id="search">Search</button>
 				</form>
-
+				<div className="row">
+					{this.state.books && this.state.books.map((book, index) => (
+						<div key={index} className="col-md-4">
+							<Results book={book} />
+						</div>
+					))}
+				</div>
 				<p id="error-message" className="error-message">
 					{this.state.error}
 				</p>
