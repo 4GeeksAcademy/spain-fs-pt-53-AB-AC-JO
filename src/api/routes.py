@@ -56,19 +56,24 @@ def add_user():
     email = request.json.get("email")
     password = request.json.get("password")
     is_active = True
+    username = request.json.get("username")
+    visibility = request.json.get("visibility", "public")  # Set a default value if not provided
 
-    required_fields = [email, password, is_active]
+    required_fields = [email, password, username, is_active]
 
-    if any(field is None for field in required_fields):
-        return jsonify({'error': 'You must provide an email and a password'}), 400
+    if visibility not in ["public", "private"]:
+        return jsonify({'error': 'Invalid visibility value. Use "public" or "private"'}), 400
     
+    if any(field is None for field in required_fields):
+        return jsonify({'error': 'You must provide an email, a password, and a username'}), 400
+
     user = User.query.filter_by(email=email).first()
 
     if user:
         return jsonify({"msg": "This user already has an account"}), 401
-    
+
     try:
-        new_user = User(email=email, password=password, is_active=is_active)
+        new_user = User(email=email, password=password, is_active=is_active, username=username)
         db.session.add(new_user)
         db.session.commit()
         return jsonify({'response': 'User added successfully'}), 200
