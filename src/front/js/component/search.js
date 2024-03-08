@@ -7,7 +7,7 @@ import { Results } from "./results"
 
 const apiKey = "AIzaSyCS2PIzm7JZBy6eR6K-WlJ45aWGcZRnwbo";
 const apiURL = "https://www.googleapis.com/books/v1/volumes";
-const fields = "fields=items(volumeInfo(title,subtitle,authors,imageLinks(thumbnail,smallThumbnail),publishedDate,pageCount))"
+const fields = "fields=items(id,volumeInfo(title,subtitle,authors,imageLinks(thumbnail,smallThumbnail),publishedDate,pageCount))"
 
 export class Search extends React.Component {
 	state = {
