@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { Search } from "../component/search";
+
+
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -29,6 +32,8 @@ export const Home = () => {
 			<p>
 				Work in progress.
 			</p>
+			<Search></Search>
+			
 		</div>
 	);
 };
