@@ -44,7 +44,7 @@ def get_hello():
     dictionary = {"message": "Hello user " + user}
     return jsonify(dictionary)
 
-@api.route("/user", methods=["POST"])
+@api.route("/user", methods=["POST"])  #Registro usuario
 def add_user():
     email = request.json.get("email")
     password = request.json.get("password")
@@ -83,7 +83,7 @@ def get_user():
     return jsonify(dictionary)
 
 
-@api.route('/reviews', methods=['POST'])
+@api.route('/reviews', methods=['POST'])  #Añadir review, primero confirma si el libro ya está en la base de datos para no duplicar el libro
 def add_review():
     title = request.json.get("title")
     author = request.json.get("author")
@@ -112,7 +112,7 @@ def add_review():
 
     return jsonify({'message': 'Review added successfully'})
 
-@api.route('/reviews', methods=['GET'])
+@api.route('/reviews', methods=['GET'])  # Obtiene todas las reviews
 def get_reviews():
     reviews = Review.query.all()
     result = []
@@ -122,11 +122,41 @@ def get_reviews():
         result.append(review_data)
     return jsonify(result)
 
-@api.route('/reviews/<int:review_id>', methods=['GET'])
+@api.route('/reviews/<int:review_id>', methods=['GET']) #Obtiene review por ID de review
 def get_review(review_id):
     review = Review.query.get_or_404(review_id)
     review_data = review.serialize()
     return jsonify(review_data)
+
+@api.route('/reviews/<int:review_id>', methods=['PUT']) #Modifica review por ID de review, confirmar que sólo el user.id que la crea la puede modificar
+def update_review_comment(review_id):
+    review = Review.query.get_or_404(review_id)
+    comment = request.json.get("comment")
+    user_id = request.json.get("user_id")
+
+    if not comment:
+        return jsonify({'error': 'Comment is required'}), 400
+
+    if review.user_id != user_id:
+        return jsonify({'error': 'Unauthorized to modify this review'}), 401
+
+    review.comment = comment
+    db.session.commit()
+
+    return jsonify({'message': 'Review updated successfully'})
+
+@api.route('/reviews/<int:review_id>', methods=['DELETE']) # Borra review por ID de review, confirmar que sólo el user.id que la crea la puede borrar
+def delete_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    user_id = request.json.get("user_id")
+
+    if review.user_id != user_id:
+        return jsonify({'error': 'Unauthorized to delete this review'}), 401
+
+    db.session.delete(review)
+    db.session.commit()
+
+    return jsonify({'message': 'Review deleted successfully'})
 
 @api.after_request
 def add_cors_headers(response):
