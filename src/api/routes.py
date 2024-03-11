@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Book, Review
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 
@@ -40,8 +40,8 @@ def create_token():
 @api.route("/hello", methods=["GET"])
 @jwt_required()
 def get_hello():
-    email = get_jwt_identity()
-    dictionary = {"message": "Hello user " + email}
+    user = get_jwt_identity()
+    dictionary = {"message": "Hello user " + user}
     return jsonify(dictionary)
 
 @api.route("/user", methods=["POST"])
@@ -50,7 +50,7 @@ def add_user():
     password = request.json.get("password")
     is_active = True
     username = request.json.get("username")
-    visibility = request.json.get("visibility", "public")  # Set a default value if not provided
+    visibility = request.json.get("visibility", "public")  
 
     required_fields = [email, password, username, is_active]
 
@@ -70,6 +70,7 @@ def add_user():
         db.session.add(new_user)
         db.session.commit()
         return jsonify({'response': 'User added successfully'}), 200
+    
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 400
@@ -81,6 +82,51 @@ def get_user():
     dictionary = {"message": "Hello, this was a private check with your user " + email}
     return jsonify(dictionary)
 
+
+@api.route('/reviews', methods=['POST'])
+def add_review():
+    title = request.json.get("title")
+    author = request.json.get("author")
+    published_year = request.json.get("published_year")
+    pages = request.json.get("pages")
+    thumbnail = request.json.get("thumbnail")
+    small_thumbnail = request.json.get("small_thumbnail")
+    google_id = request.json.get("google_id")
+    user_id = request.json.get("user_id")
+    comment = request.json.get("comment")
+
+    # Check if the book already exists in the database
+    book = Book.query.filter_by(title=title, author=author, published_year=published_year, google_id=google_id).first()
+
+    if not book:
+        # If the book doesn't exist, add it to the database
+        book = Book(title=title, author=author, published_year=published_year, pages=pages, thumbnail=thumbnail, small_thumbnail=small_thumbnail, google_id=google_id)
+        db.session.add(book)
+        db.session.commit()
+
+    # Add the review to the database
+    comment = request.json.get("comment")
+    review = Review(user_id=user_id, book=book, comment=comment)
+    db.session.add(review)
+    db.session.commit()
+
+    return jsonify({'message': 'Review added successfully'})
+
+@api.route('/reviews', methods=['GET'])
+def get_reviews():
+    reviews = Review.query.all()
+    result = []
+    for review in reviews:
+        review_data = review.serialize()
+        review_data['book'] = review.book.serialize()
+        result.append(review_data)
+    return jsonify(result)
+
+@api.route('/reviews/<int:review_id>', methods=['GET'])
+def get_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    review_data = review.serialize()
+    return jsonify(review_data)
 
 @api.after_request
 def add_cors_headers(response):

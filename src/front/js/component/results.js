@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
 export const Results = ({ book }) => {
+  
+
   return (
     <Card style={{ width: '18rem' }} className="mb-3">
       <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
@@ -25,5 +27,6 @@ export const Results = ({ book }) => {
         <Button>Añadir review</Button>
       </Card.Body>
     </Card>
+
   );
 }

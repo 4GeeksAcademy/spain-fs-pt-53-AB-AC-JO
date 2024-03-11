@@ -27,14 +27,13 @@ class User(db.Model):
 class Book(db.Model):
     book_id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    author = db.Column(db.String(50), nullable=False)
-    published_year = db.Column(db.Integer, nullable=False)
-    review = db.Column(db.Text, nullable=True)
-    pages = db.Column(db.Integer, nullable=False)
-    thumbnail = db.Column(db.String(200), nullable=False)
-    small_thumbnail = db.Column(db.String(200), nullable=False)
+    author = db.Column(db.String(50), nullable=True)
+    published_year = db.Column(db.String(50), nullable=True)
+    pages = db.Column(db.Integer, nullable=True)
+    thumbnail = db.Column(db.String(200), nullable=True)
+    small_thumbnail = db.Column(db.String(200), nullable=True)
     google_id = db.Column(db.String(50), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
 
     def serialize(self):
         return {
@@ -42,12 +41,11 @@ class Book(db.Model):
             "title": self.title,
             "author": self.author,
             "published_year": self.published_year,
-            "review": self.review,
             "pages": self.pages,
             "thumbnail": self.thumbnail,
             "small_thumbnail": self.small_thumbnail,
             "google_id": self.google_id,
-            "user_id": self.user_id,
+            
         }
 
 class Review(db.Model):
@@ -65,4 +63,6 @@ class Review(db.Model):
             "user_id": self.user_id,
             "book_id": self.book_id,
             "comment": self.comment,
+             "book": self.book.serialize()
         }
+    
