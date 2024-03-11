@@ -29,11 +29,11 @@ def create_token():
     user = User.query.filter_by(email=email).first()
 
     if not user:
-        return jsonify({"msg": "User not found"}), 401
+        return jsonify({"msg": "Usuario no encontrado"}), 401
     if user.password != password:
-        return jsonify({"msg": "Bad email or password"}), 401
+        return jsonify({"msg": "Email o contraseña incorrectos"}), 401
 
-    access_token = create_access_token(identity=email)
+    access_token = create_access_token(identity=user.id)
     return jsonify(access_token=access_token)
 
 
@@ -43,13 +43,6 @@ def get_hello():
     email = get_jwt_identity()
     dictionary = {"message": "Hello user " + email}
     return jsonify(dictionary)
-
-@api.after_request
-def add_cors_headers(response):
-   response.headers['Access-Control-Allow-Origin'] = 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev'
-   response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
-   response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE'
-   return response
 
 @api.route("/user", methods=["POST"])
 def add_user():
@@ -87,3 +80,11 @@ def get_user():
     email = get_jwt_identity()
     dictionary = {"message": "Hello, this was a private check with your user " + email}
     return jsonify(dictionary)
+
+
+@api.after_request
+def add_cors_headers(response):
+   response.headers['Access-Control-Allow-Origin'] = 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev'
+   response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+   response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE'
+   return response

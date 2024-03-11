@@ -34,7 +34,7 @@ export const Login = () => {
 					<Form>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
 							<Form.Label>Email address</Form.Label>
-							<Form.Control className='text-center' type="text" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+							<Form.Control className='text-center' type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
 						</Form.Group>
 
 						<Form.Group className="mb-3" controlId="formBasicPassword">

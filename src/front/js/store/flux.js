@@ -62,13 +62,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("session ends")
 				setStore({ token: null })
 			},
-			register: async (email, password) => {
+			register: async (email, password, user, visibility) => {
 				try {
 					const res = await fetch(backUrl + 'api/user', {
 						method: 'POST',
 						body: JSON.stringify({
 							email: email,
-							password: password
+							password: password,
+							username: user,
+							visibility: visibility
 						}),
 						headers: {
 							'Content-Type': 'application/json'
