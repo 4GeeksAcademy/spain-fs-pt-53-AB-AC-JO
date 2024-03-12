@@ -6,6 +6,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Book, Review
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from flask_bcrypt import generate_password_hash, check_password_hash
 
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
@@ -24,25 +25,33 @@ CORS(api, resources={r"/api/*": {"origins": 'https://crispy-space-umbrella-4j79x
 # create_access_token() function is used to actually generate the JWT.
 @api.route("/token", methods=["POST"])
 def create_token():
+    
     email = request.json.get("email", None)
     password = request.json.get("password", None)
 
+    
     user = User.query.filter_by(email=email).first()
 
+    if not user or not password:
+        return jsonify({"msg": "Email and password are required"}), 400
+
+    
     if not user:
-        return jsonify({"msg": "Usuario no encontrado"}), 401
-    if user.password != password:
+        return jsonify({"msg": "Email not found"}), 401
+
+    
+    if not check_password_hash(user.hash, password):
         return jsonify({"msg": "Email o contraseña incorrectos"}), 401
 
-    access_token = create_access_token(identity=user.id)
+    access_token = create_access_token(identity=email)
     return jsonify(access_token=access_token)
 
 
 @api.route("/hello", methods=["GET"])
 @jwt_required()
 def get_hello():
-    user_id = get_jwt_identity()
-    user = User.query.get(user_id)  # query the User model to get the user object
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
     if user:
         dictionary = {"message": "Hello user " + user.username}
         return jsonify(dictionary)
@@ -65,13 +74,16 @@ def add_user():
     if any(field is None for field in required_fields):
         return jsonify({'error': 'Debes facilitar un mail, usuario y contraseña válidos'}), 400
 
+
+    hashed = generate_password_hash(password).decode('utf-8')
     user = User.query.filter_by(email=email).first()
+    
 
     if user:
         return jsonify({"msg": "Este usuario ya tiene una cuenta registrada"}), 401
 
     try:
-        new_user = User(email=email, password=password, is_active=is_active, username=username, visibility=visibility)
+        new_user = User(email=email, hash=hashed, is_active=is_active, username=username, visibility=visibility)
         db.session.add(new_user)
         db.session.commit()
         return jsonify({'response': 'Usuario añadido correctamente'}), 200
@@ -83,8 +95,8 @@ def add_user():
 @api.route("/privateuser", methods=["GET"])
 @jwt_required()
 def get_user():
-    user_id = get_jwt_identity()
-    user = User.query.get(user_id)
+    email = get_jwt_identity()
+    user = User.query.filter_by(email=email).first()
     if user:
         dictionary = {"message": f"Hello, this was a private check with your user {user.username}"}
     else:
