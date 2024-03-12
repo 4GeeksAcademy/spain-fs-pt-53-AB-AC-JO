@@ -14,7 +14,8 @@ from flask_jwt_extended import JWTManager
 
 api = Blueprint('api', __name__)
 
-# Hay que modificar la URL de puerto 3000 (Nuestro front) en la línea 19 y 49
+# Hay que modificar la URL de puerto 3000 (Nuestro front) en la línea 19 y 49!!!!
+
 # Allow CORS requests to this API
 CORS(api, resources={r"/api/*": {"origins": 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev'}})
 
@@ -40,9 +41,13 @@ def create_token():
 @api.route("/hello", methods=["GET"])
 @jwt_required()
 def get_hello():
-    user = get_jwt_identity()
-    dictionary = {"message": "Hello user " + user}
-    return jsonify(dictionary)
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)  # query the User model to get the user object
+    if user:
+        dictionary = {"message": "Hello user " + user.username}
+        return jsonify(dictionary)
+    else:
+        return jsonify({"message": "User not found"}), 404
 
 @api.route("/user", methods=["POST"])  #Registro usuario
 def add_user():
@@ -58,7 +63,7 @@ def add_user():
         return jsonify({'error': 'Invalid visibility value. Use "public" or "private"'}), 400
     
     if any(field is None for field in required_fields):
-        return jsonify({'error': 'You must provide an email, a password, and a username'}), 400
+        return jsonify({'error': 'Debes facilitar un mail, usuario y contraseña válidos'}), 400
 
     user = User.query.filter_by(email=email).first()
 
@@ -78,8 +83,12 @@ def add_user():
 @api.route("/privateuser", methods=["GET"])
 @jwt_required()
 def get_user():
-    email = get_jwt_identity()
-    dictionary = {"message": "Hello, this was a private check with your user " + email}
+    user_id = get_jwt_identity()
+    user = User.query.get(user_id)
+    if user:
+        dictionary = {"message": f"Hello, this was a private check with your user {user.username}"}
+    else:
+        dictionary = {"message": "User not found"}
     return jsonify(dictionary)
 
 
@@ -135,15 +144,15 @@ def update_review_comment(review_id):
     user_id = request.json.get("user_id")
 
     if not comment:
-        return jsonify({'error': 'Se requiere una reseña'}), 400
+        return jsonify({'error': 'Se requiere una review'}), 400
 
     if review.user_id != user_id:
-        return jsonify({'error': 'No está autorizado para modificar esta reseña'}), 401
+        return jsonify({'error': 'No está autorizado para modificar esta review'}), 401
 
     review.comment = comment
     db.session.commit()
 
-    return jsonify({'message': 'Reseña actualizada correctamente'})
+    return jsonify({'message': 'Review actualizada correctamente'})
 
 @api.route('/reviews/<int:review_id>', methods=['DELETE']) # Borra review por ID de review, confirmar que sólo el user.id que la crea la puede borrar
 def delete_review(review_id):

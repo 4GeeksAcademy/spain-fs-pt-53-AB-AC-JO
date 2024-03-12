@@ -21,7 +21,7 @@ def setup_commands(app):
         print("Creating test users")
         for x in range(1, int(count) + 1):
             user = User()
-            user.email = "test_user" + str(x) + "@test.com"
+            user.email = "test_user" + str(x) + "@test.es"
             user.password = "123456"
             user.is_active = True
             db.session.add(user)
@@ -34,7 +34,7 @@ def setup_commands(app):
     def insert_test_data():
         pass
 
-    @app.cli.command("query-user-id")
+    @app.cli.command("query-user-id") # Lista los user ID, sus mails y la visibilidad de su perfil
     def query_user_id():
         users = User.query.all()
         for user in users:
