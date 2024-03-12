@@ -63,13 +63,13 @@ def add_user():
     user = User.query.filter_by(email=email).first()
 
     if user:
-        return jsonify({"msg": "This user already has an account"}), 401
+        return jsonify({"msg": "Este usuario ya tiene una cuenta registrada"}), 401
 
     try:
-        new_user = User(email=email, password=password, is_active=is_active, username=username)
+        new_user = User(email=email, password=password, is_active=is_active, username=username, visibility=visibility)
         db.session.add(new_user)
         db.session.commit()
-        return jsonify({'response': 'User added successfully'}), 200
+        return jsonify({'response': 'Usuario añadido correctamente'}), 200
     
     except Exception as e:
         db.session.rollback()
@@ -83,7 +83,7 @@ def get_user():
     return jsonify(dictionary)
 
 
-@api.route('/reviews', methods=['POST'])  #Añadir review, primero confirma si el libro ya está en la base de datos para no duplicar el libro
+@api.route('/reviews', methods=['POST'])  #Añadir review, primero confirma si el libro ya está en la base de datos para no duplicarlo
 def add_review():
     title = request.json.get("title")
     author = request.json.get("author")
@@ -95,26 +95,26 @@ def add_review():
     user_id = request.json.get("user_id")
     comment = request.json.get("comment")
 
-    # Check if the book already exists in the database
+    # Confirmación si el libro está en DB
     book = Book.query.filter_by(title=title, author=author, published_year=published_year, google_id=google_id).first()
 
     if not book:
-        # If the book doesn't exist, add it to the database
+        # Si el libro no existe en DB lo añade
         book = Book(title=title, author=author, published_year=published_year, pages=pages, thumbnail=thumbnail, small_thumbnail=small_thumbnail, google_id=google_id)
         db.session.add(book)
         db.session.commit()
 
-    # Add the review to the database
+    # Añade la review a DB
     comment = request.json.get("comment")
     review = Review(user_id=user_id, book=book, comment=comment)
     db.session.add(review)
     db.session.commit()
 
-    return jsonify({'message': 'Review added successfully'})
+    return jsonify({'message': 'Reseña añadida correctamente'})
 
-@api.route('/reviews', methods=['GET'])  # Obtiene todas las reviews
+@api.route('/reviews', methods=['GET'])  # Obtiene todas las reviews de usuarios con visibilidad 'public'
 def get_reviews():
-    reviews = Review.query.all()
+    reviews = Review.query.filter(Review.user.has(User.visibility == 'public')).all()
     result = []
     for review in reviews:
         review_data = review.serialize()
@@ -135,15 +135,15 @@ def update_review_comment(review_id):
     user_id = request.json.get("user_id")
 
     if not comment:
-        return jsonify({'error': 'Comment is required'}), 400
+        return jsonify({'error': 'Se requiere una reseña'}), 400
 
     if review.user_id != user_id:
-        return jsonify({'error': 'Unauthorized to modify this review'}), 401
+        return jsonify({'error': 'No está autorizado para modificar esta reseña'}), 401
 
     review.comment = comment
     db.session.commit()
 
-    return jsonify({'message': 'Review updated successfully'})
+    return jsonify({'message': 'Reseña actualizada correctamente'})
 
 @api.route('/reviews/<int:review_id>', methods=['DELETE']) # Borra review por ID de review, confirmar que sólo el user.id que la crea la puede borrar
 def delete_review(review_id):
@@ -151,12 +151,12 @@ def delete_review(review_id):
     user_id = request.json.get("user_id")
 
     if review.user_id != user_id:
-        return jsonify({'error': 'Unauthorized to delete this review'}), 401
+        return jsonify({'error': 'No autorizado, sólo el creador de la reseña puede borrarla'}), 401
 
     db.session.delete(review)
     db.session.commit()
 
-    return jsonify({'message': 'Review deleted successfully'})
+    return jsonify({'message': 'Reseña eliminada correctamente'})
 
 @api.after_request
 def add_cors_headers(response):

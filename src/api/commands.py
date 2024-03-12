@@ -38,5 +38,5 @@ def setup_commands(app):
     def query_user_id():
         users = User.query.all()
         for user in users:
-            print(f"User id: {user.id}, User email: {user.email}")
+            print(f"User id: {user.id}, User email: {user.email}, User visibility: {user.visibility}")
   
