@@ -92,6 +92,30 @@ def add_user():
         db.session.rollback()
         return jsonify({'error': str(e)}), 400
     
+@api.route("/change_password", methods=["PUT"])
+# @jwt_required()   Need to uncomment this when swapping line 98 for line 99 (so it gets the email from JWT Identity instead of the body of the JSON request)
+def change_password():
+    # email = get_jwt_identity()
+    email = request.json.get("email", None)   #This is for Postman testing pourposes, need to delete and uncomment lines 96 and 98 when using it on the web
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({"msg": "Email not found"}), 401
+
+    current_password = request.json.get("current_password", None)
+    new_password = request.json.get("new_password", None)
+
+    if not current_password or not new_password:
+        return jsonify({"msg": "Current and new passwords are required"}), 400
+
+    if not check_password_hash(user.hash, current_password):
+        return jsonify({"msg": "Current password is incorrect"}), 401
+
+    hashed = generate_password_hash(new_password).decode('utf-8')
+    user.hash = hashed
+    db.session.commit()
+
+    return jsonify({"msg": "Password changed successfully"}), 200
+    
 @api.route("/privateuser", methods=["GET"])
 @jwt_required()
 def get_user():
