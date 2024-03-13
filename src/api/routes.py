@@ -137,12 +137,12 @@ def add_review():
     thumbnail = request.json.get("thumbnail")
     small_thumbnail = request.json.get("small_thumbnail")
     google_id = request.json.get("google_id")
-    user_id = request.json.get("user_id")
+    # user_id = request.json.get("user_id") Postman testing
     comment = request.json.get("comment")
 
     # Confirmación si el libro está en DB
     book = Book.query.filter_by(title=title, author=author, published_year=published_year, google_id=google_id).first()
-
+    user_id = get_jwt_identity()
     if not book:
         # Si el libro no existe en DB lo añade
         book = Book(title=title, author=author, published_year=published_year, pages=pages, thumbnail=thumbnail, small_thumbnail=small_thumbnail, google_id=google_id)
@@ -177,7 +177,8 @@ def get_review(review_id):
 def update_review_comment(review_id):
     review = Review.query.get_or_404(review_id)
     comment = request.json.get("comment")
-    user_id = request.json.get("user_id")
+    # user_id = request.json.get("user_id") Postman testing
+    user_id = get_jwt_identity()
 
     if not comment:
         return jsonify({'error': 'Se requiere una review'}), 400
@@ -193,7 +194,8 @@ def update_review_comment(review_id):
 @api.route('/reviews/<int:review_id>', methods=['DELETE']) # Borra review por ID de review, confirmar que sólo el user.id que la crea la puede borrar
 def delete_review(review_id):
     review = Review.query.get_or_404(review_id)
-    user_id = request.json.get("user_id")
+    # user_id = request.json.get("user_id") Postman testing
+    user_id = get_jwt_identity()
 
     if review.user_id != user_id:
         return jsonify({'error': 'No autorizado, sólo el creador de la reseña puede borrarla'}), 401
