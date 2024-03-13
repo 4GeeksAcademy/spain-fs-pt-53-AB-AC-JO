@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Form, Button } from 'react-bootstrap';
+import "../../styles/viewbook.css";
 
 // modificar como nos convenga
 function ViewBook(props) {
@@ -32,7 +33,7 @@ function ViewBook(props) {
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Card style={{ width: '18rem' }} >
+      <Card className='book' style={{ width: '20rem' }} >
         <Card.Img variant="top" src={props.imagePath} /> 
         <Card.Img variant="top" src={"https://media.istockphoto.com/id/519749884/es/foto/brit%C3%A1nico-carril-de-homenaje-a-harry-potter-en-cruz-estaci%C3%B3n-reyes.jpg?s=1024x1024&w=is&k=20&c=6e8uPo5bdXtO9zfiuroAGoYLMLnNMiWm1JloL2Mb2ss="} /> 
         <Card.Body>
