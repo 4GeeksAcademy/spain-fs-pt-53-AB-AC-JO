@@ -16,7 +16,7 @@ export const Navbar = () => {
 			<div className="container">
 				<Link to="/">
 					<Logo /> {/* Use the Logo component */}
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span> {/* esto lo eliminamos? */}
+					
 				</Link>
 				<div className=" ml-auto">
 					{!store.token ? <Link to="/login">
