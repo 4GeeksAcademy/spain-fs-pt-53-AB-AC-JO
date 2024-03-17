@@ -1,9 +1,10 @@
-const backUrl = 'https://expert-winner-5gx76wgr744f7w4w-3001.app.github.dev/'   // Hay que modificar esta URL con la 3001 (La de nuestro back) y modifica el resto.
+const backUrl = 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/'   // Hay que modificar esta URL con la 3001 (La de nuestro back) y modifica el resto.
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
 			message: null,
+			error: null,
 			reviews: [],
 			demo: [
 				{
@@ -123,35 +124,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error cargando mensaje del backend", error)
 				}
 			},
-			changePassword(currentPassword, newPassword) {    // Testing not done yet, cross your fingers
-				return async () => {
-					try {
-						const email = getJwtIdentity(); // Get the email from the JWT token
-
-						const res = await fetch(backUrl + '/api/change_password', {
-							method: 'PUT',
-							headers: {
-								'Content-Type': 'application/json',
-								'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-							},
-							body: JSON.stringify({ email, currentPassword, newPassword })
-						});
-
-						if (!res.ok) {
-							throw new Error('Network response was not ok');
-						}
-
-						const data = await res.json();
-
-						// Dispatch the CHANGE_PASSWORD_SUCCESS action with the response data
-						setStore({ message: data.message });
-
-					} catch (error) {
-						// Dispatch the CHANGE_PASSWORD_FAILURE action with the error message
-						setStore({ error: error.message });
-					}
-				};
-			},
+			changepassword: async (currentPassword, newPassword) => {
+				try {
+				  const resp = await fetch(backUrl + 'api/change_password', {
+					method: 'PUT',
+					headers: {
+					  'Content-Type': 'application/json',
+					  'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+					},
+					body: JSON.stringify({
+						current_password: currentPassword,
+						new_password: newPassword
+					}),
+				  });
+				  if (resp.ok) {
+					console.log('Password changed')
+					return true;
+				} else {
+					throw new Error('Failed to change password');
+				}
+			} catch (error) {
+				console.error('Error changing password:', error);
+				return false;
+			}
+				},
 			createReview(book, comment) {
 				return async () => {
 				  try {
@@ -222,36 +218,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			changePassword(currentPassword, newPassword) {
-				return async () => {
-					try {
-						const email = getJwtIdentity(); // Get the email from the JWT token
-
-						const res = await fetch('/api/change_password', {
-							method: 'PUT',
-							headers: {
-								'Content-Type': 'application/json',
-								// Include the authorization header if you are using JWT authentication
-								// 'Authorization': 'Bearer ' + localStorage.getItem('token')
-							},
-							body: JSON.stringify({ email, currentPassword, newPassword })
-						});
-
-						if (!res.ok) {
-							throw new Error('Network response was not ok');
-						}
-
-						const data = await res.json();
-
-						// Dispatch the CHANGE_PASSWORD_SUCCESS action with the response data
-						setStore({ message: data.message });
-
-					} catch (error) {
-						// Dispatch the CHANGE_PASSWORD_FAILURE action with the error message
-						setStore({ error: error.message });
-					}
-				};
-			}
+			changePassword: async (currentPassword, newPassword) => {
+				try {
+				  const email = getJwtIdentity(); // Get the email from the JWT token
+			  
+				  const res = await fetch(backUrl + '/api/change_password', {
+					method: 'PUT',
+					headers: {
+					  'Content-Type': 'application/json',
+					  'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+					},
+					body: JSON.stringify({ email, currentPassword, newPassword })
+				  });
+			  
+				  if (!res.ok) {
+					throw new Error('Network response was not ok');
+				  }
+			  
+				  const data = await res.json();
+			  
+				  // Dispatch the CHANGE_PASSWORD_SUCCESS action with the response data
+				  setStore({ message: data.message });
+			  
+				} catch (error) {
+				  // Dispatch the CHANGE_PASSWORD_FAILURE action with the error message
+				  setStore({ error: error.message });
+				}
+			  },
 		},
 
 	}

@@ -13,12 +13,13 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 
+
 api = Blueprint('api', __name__)
 
-# Hay que modificar la URL de puerto 3000 (Nuestro front) en la línea 19 y 49!!!!
+# Hay que modificar la URL de puerto 3000 (Nuestro front) en la línea 21 y 210!!!!
 
 # Allow CORS requests to this API
-CORS(api, resources={r"/api/*": {"origins": 'https://expert-winner-5gx76wgr744f7w4w-3000.app.github.dev/'}})
+CORS(api, resources={r"/api/*": {"origins": 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev:3000/'}})
 
 
 # Create a route to authenticate your users and return JWTs. The
@@ -92,18 +93,19 @@ def add_user():
         db.session.rollback()
         return jsonify({'error': str(e)}), 400
     
+
+    # email = request.json.get("email", None)   #This is for Postman testing pourposes, need to delete and uncomment lines 96 and 98 when using it on the web
+
 @api.route("/change_password", methods=["PUT"])
-# @jwt_required()   Need to uncomment this when swapping line 98 for line 99 (so it gets the email from JWT Identity instead of the body of the JSON request)
+@jwt_required() 
 def change_password():
-    # email = get_jwt_identity()
-    email = request.json.get("email", None)   #This is for Postman testing pourposes, need to delete and uncomment lines 96 and 98 when using it on the web
+    email = get_jwt_identity()
     user = User.query.filter_by(email=email).first()
     if not user:
         return jsonify({"msg": "Email not found"}), 401
 
     current_password = request.json.get("current_password", None)
     new_password = request.json.get("new_password", None)
-
     if not current_password or not new_password:
         return jsonify({"msg": "Current and new passwords are required"}), 400
 
@@ -207,7 +209,7 @@ def delete_review(review_id):
 
 @api.after_request
 def add_cors_headers(response):
-   response.headers['Access-Control-Allow-Origin'] = 'https://expert-winner-5gx76wgr744f7w4w-3000.app.github.dev'
+   response.headers['Access-Control-Allow-Origin'] = 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev'
    response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
    response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE'
    return response
