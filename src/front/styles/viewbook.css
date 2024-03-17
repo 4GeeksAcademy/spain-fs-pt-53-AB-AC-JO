@@ -59,11 +59,11 @@
   
   
   @media (max-width: 768px) {
-    .card-body {
+    .card-body2 {
       flex-direction: column;
     }
     
-    .left-content, .right-content {
+    .left-content2, .right-content2 {
       flex: none;
       width: 100%;
     }
