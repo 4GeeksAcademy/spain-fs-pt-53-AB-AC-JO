@@ -24,7 +24,6 @@ export const Navbar = () => {
 					</Link> :
 						<button onClick={handleClick} className="btn btn-danger btn-sm">Log out</button>
 					}
-
 				</div>
 			</div>
 		</nav>
