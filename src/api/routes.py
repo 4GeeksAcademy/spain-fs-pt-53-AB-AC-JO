@@ -128,7 +128,6 @@ def get_user():
         dictionary = {"message": "User not found"}
     return jsonify(dictionary)
 
-
 @api.route('/reviews', methods=['POST'])  #Añadir review, primero confirma si el libro ya está en la base de datos para no duplicarlo
 @jwt_required()
 def add_review():

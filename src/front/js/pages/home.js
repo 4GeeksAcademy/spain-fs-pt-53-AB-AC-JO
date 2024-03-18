@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Search } from "../component/search";
+import {TopScroll} from "../component/topScroll"
 
 
 
