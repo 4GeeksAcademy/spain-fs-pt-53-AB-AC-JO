@@ -138,10 +138,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}),
 				  });
 				  if (resp.ok) {
-					console.log('Password changed')
-					return true;
+					alert("Contraseña modificada correctamente");
+						return true;
 				} else {
 					throw new Error('Failed to change password');
+					alert("Ha ocurrido un error");
 				}
 			} catch (error) {
 				console.error('Error changing password:', error);
