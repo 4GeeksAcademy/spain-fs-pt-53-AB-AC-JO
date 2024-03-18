@@ -9,7 +9,7 @@ import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Profile } from "./pages/profile";
 import { Single } from "./pages/single";
-import ViewBook from "./pages/viewbook"
+import { ViewBook } from "./pages/viewbook"
 import injectContext from "./store/appContext";
 import About from "./pages/about";
 import ChangePasswordForm from "./pages/changePasswordForm";
