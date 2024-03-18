@@ -130,6 +130,7 @@ def get_user():
 
 
 @api.route('/reviews', methods=['POST'])  #Añadir review, primero confirma si el libro ya está en la base de datos para no duplicarlo
+@jwt_required()
 def add_review():
     email = get_jwt_identity()
     user = User.query.filter_by(email=email).first()

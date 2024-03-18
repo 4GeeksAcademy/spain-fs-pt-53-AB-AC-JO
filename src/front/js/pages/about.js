@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../styles/about.css";
+// import "../../styles/about.css";
 
 
 

@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log("Session loading getting token")
 				if (token && token != "" && token != undefined && token != null) await setStore({ token: token })
 			},
-			
+
 			login: async (email, password) => {
 				try {
 					const res = await fetch(backUrl + 'api/token', {
@@ -126,85 +126,50 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			changepassword: async (currentPassword, newPassword) => {
 				try {
-				  const resp = await fetch(backUrl + 'api/change_password', {
-					method: 'PUT',
-					headers: {
-					  'Content-Type': 'application/json',
-					  'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-					},
-					body: JSON.stringify({
-						current_password: currentPassword,
-						new_password: newPassword
-					}),
-				  });
-				  if (resp.ok) {
-					alert("Contraseña modificada correctamente");
-						return true;
-				} else {
-					throw new Error('Failed to change password');
-					alert("Ha ocurrido un error");
-				}
-			} catch (error) {
-				console.error('Error changing password:', error);
-				return false;
-			}
-				},
-			createReview(book, comment) {
-				return async () => {
-				  try {
-					const user_id = await getJwtIdentity();
-					const response = await fetch(backUrl + '/api/reviews', {
-					  method: 'POST',
-					  headers: {
-						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${store.token}`
-					  },
-					  body: JSON.stringify({
-						title: book.volumeInfo.title,
-						author: book.volumeInfo.authors[0],
-						published_year: book.volumeInfo.publishedDate.slice(0, 4),
-						pages: book.volumeInfo.pageCount,
-						thumbnail: book.volumeInfo.imageLinks.thumbnail,
-						small_thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
-						google_id: book.id,
-						user_id: user_id,
-						comment: comment
-					  })
+					const resp = await fetch(backUrl + 'api/change_password', {
+						method: 'PUT',
+						headers: {
+							'Content-Type': 'application/json',
+							'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+						},
+						body: JSON.stringify({
+							current_password: currentPassword,
+							new_password: newPassword
+						}),
 					});
-			  
-					if (!response.ok) {
-					  throw new Error('Failed to create review');
+					if (resp.ok) {
+						alert("Contraseña modificada correctamente");
+						return true;
+					} else {
+						throw new Error('Failed to change password');
+						alert("Ha ocurrido un error");
 					}
-			  
-					const data = await response.json();
-					store.addReview(data.review);
-					store.setMessage(data.message);
-			  
-				  } catch (error) {
-					store.setError(error.message);
-				  }
-				};
-			  },
+				} catch (error) {
+					console.error('Error changing password:', error);
+					return false;
+				}
+			},
+			
 			getPublicReviews() { 				// Testing not done yet, cross your fingers
 				return async () => {
-				  try {
-					const res = await fetch(backUrl + '/api/reviews');
-			  
-					if (!res.ok) {
-					  throw new Error('Network response was not ok');
+					try {
+						const res = await fetch(backUrl + '/api/reviews');
+
+						if (!res.ok) {
+							throw new Error('Network response was not ok');
+						}
+
+						const data = await res.json();
+
+						// Dispatch the GET_REVIEWS_SUCCESS action with the response data
+						setStore({ reviews: data });
+
+					} catch (error) {
+						// Dispatch the GET_REVIEWS_FAILURE action with the error message
+						setStore({ error: error.message });
 					}
-			  
-					const data = await res.json();
-			  
-					// Dispatch the GET_REVIEWS_SUCCESS action with the response data
-					setStore({ reviews: data });
-			  
-				  } catch (error) {
-					// Dispatch the GET_REVIEWS_FAILURE action with the error message
-					setStore({ error: error.message });
-				  }
 				};
-			  },
+			},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -219,33 +184,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			changePassword: async (currentPassword, newPassword) => {
-				try {
-				  const email = getJwtIdentity(); // Get the email from the JWT token
-			  
-				  const res = await fetch(backUrl + '/api/change_password', {
-					method: 'PUT',
-					headers: {
-					  'Content-Type': 'application/json',
-					  'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-					},
-					body: JSON.stringify({ email, currentPassword, newPassword })
-				  });
-			  
-				  if (!res.ok) {
-					throw new Error('Network response was not ok');
-				  }
-			  
-				  const data = await res.json();
-			  
-				  // Dispatch the CHANGE_PASSWORD_SUCCESS action with the response data
-				  setStore({ message: data.message });
-			  
-				} catch (error) {
-				  // Dispatch the CHANGE_PASSWORD_FAILURE action with the error message
-				  setStore({ error: error.message });
-				}
-			  },
 		},
 
 	}

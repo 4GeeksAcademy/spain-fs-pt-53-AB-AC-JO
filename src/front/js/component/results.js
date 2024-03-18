@@ -1,9 +1,13 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom"
 
 export const Results = ({ book }) => {
-  
 
+  const navigate = useNavigate();
+  const handleAddReview = () => {
+    navigate('/viewbook', { state: { book: book } });
+  };
   return (
     <Card style={{ width: '18rem' }} className="mb-3">
       <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
@@ -24,7 +28,9 @@ export const Results = ({ book }) => {
         <Card.Text>
           <strong>Páginas:</strong> {book.volumeInfo.pageCount}
         </Card.Text>
-        <Button>Añadir review</Button>
+        <Button onClick={handleAddReview}>
+          Añadir review
+        </Button>
       </Card.Body>
     </Card>
 
