@@ -14,13 +14,14 @@ def setup_commands(app):
     by typing: $ flask insert-test-users 5
     Note: 5 is the number of users to add
     """
+
     @app.cli.command("insert-test-users") # name of our command
     @click.argument("count") # argument of out command
     def insert_test_users(count):
         print("Creating test users")
         for x in range(1, int(count) + 1):
             user = User()
-            user.email = "test_user" + str(x) + "@test.com"
+            user.email = "test_user" + str(x) + "@test.es"
             user.password = "123456"
             user.is_active = True
             db.session.add(user)
@@ -32,3 +33,10 @@ def setup_commands(app):
     @app.cli.command("insert-test-data")
     def insert_test_data():
         pass
+
+    @app.cli.command("query-user-id") # Lista los user ID, sus mails y la visibilidad de su perfil
+    def query_user_id():
+        users = User.query.all()
+        for user in users:
+            print(f"User id: {user.id}, User email: {user.email}, User visibility: {user.visibility}")
+  
