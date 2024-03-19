@@ -57,37 +57,6 @@ export const ViewBook = () => {
   };
 
   return (
-    //     <Card style={{ width: '18rem' }} className="mb-3">
-    //       <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
-    //       <Card.Body>
-    //         <Card.Title>{book.volumeInfo.title}</Card.Title>
-    //         <Card.Text>
-    //           <strong>Autor(es):</strong>{" "}
-    //           {book.volumeInfo.authors?.map((author, index) => (
-    //             <span key={index}>
-    //               {author}
-    //               {index < book.volumeInfo.authors.length - 1 ? ", " : ""}
-    //             </span>
-    //           ))}
-    //         </Card.Text>
-    //         <Card.Text>
-    //           <strong>Fecha de publicación:</strong> {book.volumeInfo.publishedDate}
-    //         </Card.Text>
-    //         <Card.Text>
-    //           <strong>Páginas:</strong> {book.volumeInfo.pageCount}
-    //         </Card.Text>
-    //         <Form.Group controlId="reviewText">
-    //           <Form.Label>Reseña</Form.Label>
-    //           <Form.Control as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)} />
-    //         </Form.Group>
-    //         <Button onClick={handleClick}>
-    //           Añadir review
-    //         </Button>
-    //         <Button onClick={bringReviews}>
-    //           Todas las reviews
-    //         </Button>
-    //       </Card.Body>
-    //     </Card>
     <div>
       <ReviewForm></ReviewForm>
       <Form.Group controlId="reviewText">

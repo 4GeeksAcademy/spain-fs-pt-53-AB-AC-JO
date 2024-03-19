@@ -12,6 +12,9 @@ export const Profile = () => {
 	const [reviews, setReviews] = useState([]);
 	const deleteButtonsRef = useRef([]);
 
+	const handleModifyReview = (review) => {
+		navigate('/modifyreview', { state: { review: review, review_id: review.review_id } });
+	  };
 	const fetchReviews = async () => {
 		try {
 			const response = await fetch(
@@ -118,7 +121,7 @@ export const Profile = () => {
 								<Card.Text>
 									<strong>Comentario:</strong> {review.comment}
 								</Card.Text>
-								<Button >Modificar review</Button>
+								<Button onClick={() => handleModifyReview(review)}>Modificar review</Button>
 								<button
 									data-id={review.review_id}
 									ref={el => deleteButtonsRef.current.push(el)}

@@ -181,7 +181,7 @@ def get_review(review_id):
 @jwt_required()
 def update_review_comment(review_id):
     email = get_jwt_identity()
-    review = Review.query.join(User, Review.user_id == User.id).filter(Review.id == review_id, User.email == email).first()
+    review = Review.query.join(User, Review.user_id == User.id).filter(Review.review_id == review_id, User.email == email).first()
     if review is None:
         return jsonify({'error': 'No está autorizado para modificar esta review'}), 401
 
