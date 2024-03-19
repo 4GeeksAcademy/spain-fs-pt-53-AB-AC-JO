@@ -194,11 +194,23 @@ def update_review_comment(review_id):
 
     return jsonify({'message': 'Review actualizada correctamente'})
 
+# @api.route('/reviews/<int:review_id>', methods=['DELETE']) #Borra la review por ID, verifica que el mail que la creó es el que hace la petición de borrado.
+# @jwt_required()
+# def delete_review(review_id):
+#     email = get_jwt_identity()
+#     review = Review.query.join(User, Review.user_id == User.id).filter(Review.id == review_id, User.email == email).first()
+#     if review is None:
+#         return jsonify({'error': 'No autorizado, sólo el creador de la reseña puede borrarla'}), 401
+
+#     db.session.delete(review)
+#     db.session.commit()
+
+#     return jsonify({'message': 'Reseña eliminada correctamente'})
 @api.route('/reviews/<int:review_id>', methods=['DELETE']) #Borra la review por ID, verifica que el mail que la creó es el que hace la petición de borrado.
 @jwt_required()
 def delete_review(review_id):
     email = get_jwt_identity()
-    review = Review.query.join(User, Review.user_id == User.id).filter(Review.id == review_id, User.email == email).first()
+    review = Review.query.join(User, Review.user_id == User.id).filter(Review.review_id == review_id, User.email == email).first()
     if review is None:
         return jsonify({'error': 'No autorizado, sólo el creador de la reseña puede borrarla'}), 401
 
