@@ -116,7 +116,29 @@ def change_password():
     db.session.commit()
 
     return jsonify({"msg": "Password changed successfully"}), 200
-    
+
+@api.route('/user/visibility', methods=['PUT'])
+@jwt_required()
+def update_user_visibility():
+    email = get_jwt_identity()
+    user_query = User.query.filter_by(email=email).first()
+    if not user_query:
+        return jsonify({"msg": "Email not found"}), 401
+
+    data = request.json
+    if 'visibility' not in data:
+        return jsonify(error='Missing visibility field in the request body'), 400
+
+    updated_visibility = data['visibility']
+    if updated_visibility not in ['public', 'private']:
+        return jsonify(error='Invalid visibility. Must be "public" or "private".'), 400
+
+    user = User.query.filter_by(email=email).first()
+    user.visibility = updated_visibility
+    db.session.commit()
+
+    return jsonify(User.serialize(user)), 200
+   
 @api.route("/privateuser", methods=["GET"])
 @jwt_required()
 def get_user():
@@ -194,18 +216,6 @@ def update_review_comment(review_id):
 
     return jsonify({'message': 'Review actualizada correctamente'})
 
-# @api.route('/reviews/<int:review_id>', methods=['DELETE']) #Borra la review por ID, verifica que el mail que la creó es el que hace la petición de borrado.
-# @jwt_required()
-# def delete_review(review_id):
-#     email = get_jwt_identity()
-#     review = Review.query.join(User, Review.user_id == User.id).filter(Review.id == review_id, User.email == email).first()
-#     if review is None:
-#         return jsonify({'error': 'No autorizado, sólo el creador de la reseña puede borrarla'}), 401
-
-#     db.session.delete(review)
-#     db.session.commit()
-
-#     return jsonify({'message': 'Reseña eliminada correctamente'})
 @api.route('/reviews/<int:review_id>', methods=['DELETE']) #Borra la review por ID, verifica que el mail que la creó es el que hace la petición de borrado.
 @jwt_required()
 def delete_review(review_id):

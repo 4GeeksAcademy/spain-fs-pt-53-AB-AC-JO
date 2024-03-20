@@ -5,6 +5,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			error: null,
+			currentUser: {
+				token: null,
+				visibility: null,
+			  },
 			reviews: [],
 			demo: [
 				{
@@ -48,7 +52,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (res.status === 200) {
 						const data = await res.json();
 						sessionStorage.setItem("token", data.access_token);
-						setStore({ token: data.access_token });
+						setStore({ token: data.access_token,currentUser: {
+							token: data.access_token,
+							visibility: data.visibility,
+						  }, });
 						return true;
 					} else if (res.status === 401) {
 						const errorData = await res.json();
@@ -142,13 +149,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return true;
 					} else {
 						throw new Error('Failed to change password');
-						alert("Ha ocurrido un error");
 					}
 				} catch (error) {
 					console.error('Error changing password:', error);
 					return false;
 				}
 			},
+			
 			
 			getPublicReviews() { 				// Testing not done yet, cross your fingers
 				return async () => {
