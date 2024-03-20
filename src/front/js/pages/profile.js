@@ -11,10 +11,11 @@ export const Profile = () => {
 	const navigate = useNavigate();
 	const [reviews, setReviews] = useState([]);
 	const deleteButtonsRef = useRef([]);
+	const [showModal, setShowModal] = useState(false);
 
 	const handleModifyReview = (review) => {
 		navigate('/modifyreview', { state: { review: review, review_id: review.review_id } });
-	  };
+	};
 	const fetchReviews = async () => {
 		try {
 			const response = await fetch(
@@ -84,6 +85,7 @@ export const Profile = () => {
 
 			const data = await response.json();
 			console.log(data.message);
+			alert('La review ha sido eliminada!');
 
 			// Find the index of the button in the deleteButtonsRef array
 			const buttonIndex = deleteButtonsRef.current.findIndex(button => button.dataset.id === reviewId);
@@ -94,9 +96,9 @@ export const Profile = () => {
 			}
 		} catch (error) {
 			console.error(error);
-		} 
+		}
 	};
-
+	
 	return (
 		<div>
 			<h1 className="text-center">Profile placeholder</h1>

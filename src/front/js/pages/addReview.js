@@ -40,9 +40,11 @@ export const ViewBook = () => {
       })
       .then(data => {
         console.log('Review added successfully:', data);
+        alert("¡Review añadida correctamente!");
       })
       .catch(error => {
         console.error('Error adding review:', error);
+        alert("Vaya, ha ocurrido un error añadiendo tu review...");
       });
   };
 
