@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card, Button } from 'react-bootstrap';
-
+import { Search } from "../component/search";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -101,8 +101,7 @@ export const Profile = () => {
 	
 	return (
 		<div>
-			<h1 className="text-center">Profile placeholder</h1>
-			{store.message}
+			<Search></Search>
 			<div>
 				{reviews.map((review) => (
 					<div key={review.review_id}>

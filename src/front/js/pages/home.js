@@ -1,9 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { Search } from "../component/search";
-import {TopScroll} from "../component/topScroll"
+import { Jumbotron } from "../component/jumbotron"
+import { Link, Navigate } from "react-router-dom";
 
 
 
@@ -11,30 +10,25 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-	console.log(store, "Estoy en la home")
-	useEffect(() => {
-		if (store.token && store.token !== null && store.token !== "") {
-			setIsAuthenticated(true);
-			actions.getMessage();
-		} else {
-			setIsAuthenticated(false);
-		}
-	}, [store.token]);
+
+	// useEffect(() => {
+	// 	if (store.token && store.token !== null && store.token !== "") {
+	// 		setIsAuthenticated(true);
+	// 		actions.getMessage();
+	// 	} else {
+	// 		setIsAuthenticated(false);
+	// 	}
+	// }, [store.token]);
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
+			<Jumbotron></Jumbotron>
 			<p>
-				<img src={rigoImageUrl} />
+				Public reviews swiper
 			</p>
-			{isAuthenticated ? <div className="alert alert-info">
-				{store.message}
-			</div> : <div className="alert alert-info"> To know more about the app please log in </div>}
-			<p>
-				Work in progress.
-			</p>
-			<Search></Search>
-			
+
+
+
 		</div>
 	);
 };

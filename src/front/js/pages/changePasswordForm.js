@@ -43,9 +43,11 @@ export const ChangePasswordForm = () => {
 
       const data = await response.json();
       console.log(data.message);
+      alert("La visibilidad de tu perfil ha sido modificada correctamente.");
 
     } catch (error) {
       console.error(error);
+      alert("Uh oh, parece que ha ocurrido un error.");
     }
   };
   
