@@ -10,14 +10,6 @@ export const ViewBook = () => {
   const book = location.state?.book;
   const [comment, setComment] = useState('');
 
-  // const bringReviews = () => {
-  //   fetch('https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews/', {
-  //     method: 'GET',
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  //     .catch(error => console.error(error));
-  // }
 
   const handleClick = () => {
     const reviewData = {
@@ -48,11 +40,9 @@ export const ViewBook = () => {
       })
       .then(data => {
         console.log('Review added successfully:', data);
-        // Handle successful review addition
       })
       .catch(error => {
         console.error('Error adding review:', error);
-        // Handle error adding review
       });
   };
 
