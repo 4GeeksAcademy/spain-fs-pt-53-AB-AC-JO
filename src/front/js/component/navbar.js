@@ -11,9 +11,9 @@ export const Navbar = () => {
 		actions.logout()
 	}
 	return (
-		<nav className="navbar navbar-light" style={{ backgroundColor: "#5F5F5F" }} boxshadow="0 8px 16px rgba(0,0,0,0.5)">
+		<nav className="navbar navbar-light" style={{ backgroundColor: "#5F5F5F" }} boxshadow="0 16px 24px rgba(0,0,0,0.5)">
 			<Link to="/">
-				<Logo /> {/* Use the Logo component */}
+				<Logo />
 			</Link>
 			<div className=" ml-auto">
 				{!store.token ? <Link to="/login">

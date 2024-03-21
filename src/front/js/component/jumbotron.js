@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import libraryImage  from "../../img/library.jpg"
+import libraryImage from "../../img/library.jpg"
 
 export const Jumbotron = () => {
 
@@ -30,7 +30,7 @@ export const Jumbotron = () => {
                         lg={8}
                         className="px-lg-5"
                         style={{
-                            background: "rgba(125, 125, 125, 0.15)",
+                            background: "rgba(0, 0, 0, 0.65)",
                             position: 'relative',
                             zIndex: 1
                         }}
@@ -42,20 +42,8 @@ export const Jumbotron = () => {
                         </h4>
                         <div>
                             <Link to="/signup">
-                                <Button
-                                    className="btn btn-outline-dark btn-lg"
-                                    style={{
-                                        color: 'white',
-                                        backgroundColor: '#8FBF9F',
-                                        borderColor: '#5f5f5f',
-                                        ':hover': {
-                                            color: 'white',
-                                            backgroundColor: '#68a67d',
-                                            borderColor: '#F5ECD7',
-                                        },
-                                    }}
-                                >
-                                    Regístrate aquí
+                                <Button className="btn btn-outline-dark btn-lg" style={{ color: 'white', backgroundColor: '#8FBF9F', borderColor: '#5f5f5f', }}>
+                                    Únete aquí
                                 </Button>
                             </Link>
                         </div>
