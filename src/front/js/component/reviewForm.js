@@ -27,8 +27,7 @@ export const ReviewForm = () => {
           ))}
         </div>
         <div>
-          <h6><strong>Fecha de publicación:</strong>
-           {book.volumeInfo.publishedDate}</h6>
+          <h6><strong>Fecha de publicación:</strong> {book.volumeInfo.publishedDate}</h6>
         </div>
         <div>
           <strong>Páginas:</strong> {book.volumeInfo.pageCount}

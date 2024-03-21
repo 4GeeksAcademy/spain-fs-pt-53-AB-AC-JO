@@ -3,6 +3,7 @@ import { Card, Form, Button } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { Context } from "../store/appContext";
 import { ReviewForm } from "../component/reviewForm";
+import "../../styles/addReview.css";
 
 export const ViewBook = () => {
   const { store, actions } = useContext(Context);
@@ -57,13 +58,19 @@ export const ViewBook = () => {
   };
 
   return (
-    <div>
-      <ReviewForm></ReviewForm>
-      <Form.Group controlId="reviewText">
+    <div className="conatainer d-flex">
+      <div className="col-4">
+        <ReviewForm></ReviewForm>
+      </div>
+      <div className="col-8"> 
+        <Form.Group controlId="reviewText">
           <Form.Label>Reseña</Form.Label>
-          <Form.Control as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)} />
+          <Form.Control  as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)}  />
+
         </Form.Group>
-      <Button onClick={handleClick}>Añadir review</Button>
+
+        <Button onClick={handleClick}>Añadir review</Button>
+      </div>
     </div>
   )
 
