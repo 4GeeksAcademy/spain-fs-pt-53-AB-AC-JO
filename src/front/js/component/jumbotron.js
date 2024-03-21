@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import library.jpg from '../Img/library.jpg'
+
 export const Jumbotron = () => {
 
     const headerStyles = {
