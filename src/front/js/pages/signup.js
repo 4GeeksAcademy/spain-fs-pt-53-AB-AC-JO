@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import "../../styles/signup.css";
 
 
 export const Signup = () => {
@@ -26,9 +27,9 @@ export const Signup = () => {
     };
 
     return (
-        <div className="container text-center mt-5 d-flex justify-content-center">
+        <div className="box text-center mt-5 d-flex justify-content-center">
             <div className="col-md-6">
-                <h1>Bienvenido, registrate aquí</h1>
+                <h5>Bienvenido, registrate aquí</h5>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>

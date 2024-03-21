@@ -1,9 +1,15 @@
 import React from "react";
 import "../../styles/cardabout.css";
 
-const CardAbout = ({ image, name, description, buttonText, buttonIcon }) => {
+const CardAbout = ({ image, name, description, buttonText}) => {
+  console.log("image:", image);
+  console.log("name:", name);
+  console.log("description:", description);
+  console.log("buttonText:", buttonText);
+  
+
   return (
-    <div className="container">
+    <div className="box">
       <div className="row">
         <div className="content">
           <div>

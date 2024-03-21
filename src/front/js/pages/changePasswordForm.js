@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-// import "../../styles/home.css";
+
 import "../../styles/changepassword.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -28,7 +28,7 @@ export const ChangePasswordForm = () => {
 
 
   return (
-    <Form className="formulario">
+    <Form className="formulario justify-content-center col-mb-12">
       <Form.Group className="" controlId="currentPassword">
         <Form.Label className="label">Contraseña actual</Form.Label>
         <Form.Control className='text-center input' type="password" placeholder="Contraseña actual" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />

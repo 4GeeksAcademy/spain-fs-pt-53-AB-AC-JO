@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
+import "../../styles/login.css";
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom"
@@ -24,11 +26,11 @@ export const Login = () => {
 
 	return (
 
-		<div className="row justify-content-center">
+		<div className="container justify-content-center">
 			<div className="text-center">
 				<h1>Login</h1>
 			</div>
-			<div className='col-md-3'>
+			<div className='col-md-12'>
 				{(store.token && store.token != "" && store.token != undefined) ? "You are logged in with this token: " + store.token :
 
 					<Form>

@@ -1,4 +1,4 @@
-.container {
+.box {
   margin-top: 30px;
   --background: linear-gradient(to left, #880505 0%, #f36b11 100%);
   width: 190px;
@@ -12,7 +12,7 @@
   position: relative;
 }
 
-.container .row {
+.box .row {
   position: relative;
   width: 190px;
   height: 244px;
@@ -34,7 +34,7 @@
 
 }
 
-.container .row .content {
+.box .row .content {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -57,7 +57,7 @@
   overflow: hidden;
 }
 
-.container .row .content .icon {
+.box .row .content .icon {
   width: 50px;
   height: 50px;
   -webkit-box-shadow: 0 0 0 4px #e6e6e6,
@@ -78,7 +78,7 @@
   transition: 0.5s ease-in-out;
 }
 
-.container .row::before {
+.box .row::before {
   content: '';
   position: absolute;
   inset: -10px 50px;
@@ -94,14 +94,14 @@
   transition: 0.5s ease-in-out;
 }
 
-.container .row:hover::before {
+.box .row:hover::before {
   -webkit-transform: skewY(0deg);
   -ms-transform: skewY(0deg);
   transform: skewY(0deg);
   inset: -10px 40px;
 }
 
-.container .row::after {
+.box .row::after {
   content: '';
   position: absolute;
   inset: 60px -10px;
@@ -116,14 +116,14 @@
   transition: 0.5s ease-in-out;
 }
 
-.container .row:hover::after {
+.box .row:hover::after {
   -webkit-transform: skew(0deg);
   -ms-transform: skew(0deg);
   transform: skew(0deg);
   inset: 40px -10px;
 }
 
-.container .box .content {
+.box .box .content {
   border-radius: 50%;
 }
 

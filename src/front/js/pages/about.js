@@ -19,7 +19,7 @@ const About = () => {
       buttonText: "Button 2",
     },
   ];
-
+console.log(cardData)
   return (
     <div className="row">
       <div className="col-6">
