@@ -27,6 +27,9 @@
    
 }
 
+.card.content.card-body{
+   background-color: #ebe2cd; 
+}
 
 .card-title {
     font-size: 24px;
