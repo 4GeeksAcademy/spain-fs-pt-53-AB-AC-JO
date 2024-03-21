@@ -11,7 +11,7 @@ export const Profile = () => {
 	const navigate = useNavigate();
 	const [reviews, setReviews] = useState([]);
 	const deleteButtonsRef = useRef([]);
-	const [showModal, setShowModal] = useState(false);
+	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
 	const handleModifyReview = (review) => {
 		navigate('/modifyreview', { state: { review: review, review_id: review.review_id } });
@@ -50,12 +50,10 @@ export const Profile = () => {
 
 	};
 
-	// Call the fetchReviews function
 	useEffect(() => {
 		fetchReviews();
 	}, []);
 
-	console.log(store, "Estoy en el profile")
 	useEffect(() => {
 		actions.syncToken();
 	}, []);
@@ -71,7 +69,7 @@ export const Profile = () => {
 
 	const deleteReview = async (reviewId) => {
 		try {
-			const response = await fetch(`https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews/${reviewId}`, {
+			const response = await fetch(process.env.BACKEND_URL + `api/reviews/${reviewId}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -97,8 +95,16 @@ export const Profile = () => {
 		} catch (error) {
 			console.error(error);
 		}
+		setShowDeleteConfirmation(true);
 	};
-	
+
+	useEffect(() => {
+		if (showDeleteConfirmation) {
+		  fetchReviews();
+		  setShowDeleteConfirmation(false);
+		}
+	  }, [showDeleteConfirmation]);
+
 	return (
 		<div>
 			<Search></Search>

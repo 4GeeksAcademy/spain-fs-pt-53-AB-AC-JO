@@ -3,7 +3,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { Results } from "./results"
 
 
-const apiKey = "AIzaSyCS2PIzm7JZBy6eR6K-WlJ45aWGcZRnwbo";
+const apiKey = process.env.API_KEY
 const apiURL = "https://www.googleapis.com/books/v1/volumes";
 const fields = "fields=items(id,volumeInfo(title,subtitle,authors,imageLinks(thumbnail,smallThumbnail),publishedDate,pageCount))"
 

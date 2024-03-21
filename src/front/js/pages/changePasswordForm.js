@@ -28,7 +28,7 @@ export const ChangePasswordForm = () => {
   };
   const handleSaveVisibility = async () => {
     try {
-      const response = await fetch(`https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/user/visibility`, {
+      const response = await fetch(process.env.BACKEND_URL + 'api/user/visibility', {
         method: 'PUT',
         headers: {
 					'Content-Type': 'application/json',

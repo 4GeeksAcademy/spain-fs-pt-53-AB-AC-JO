@@ -183,13 +183,13 @@ def add_review():
 
     return jsonify({'message': 'Reseña añadida correctamente'})
 
-@api.route('/reviews', methods=['GET'])  # Obtiene todas las reviews de usuarios con visibilidad 'public'
-def get_reviews():
-    reviews = Review.query.filter(Review.user.has(User.visibility == 'public')).all()
+@api.route('/reviews', methods=['GET'])
+def get_public_reviews():
+    reviews = Review.query.join(User).join(Book).filter(User.visibility == 'public').all()
     result = []
     for review in reviews:
         review_data = review.serialize()
-        review_data['book'] = review.book.serialize()
+        review_data['username'] = review.user.username
         result.append(review_data)
     return jsonify(result)
 

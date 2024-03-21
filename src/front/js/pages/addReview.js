@@ -3,13 +3,14 @@ import { Card, Form, Button } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { Context } from "../store/appContext";
 import { ReviewForm } from "../component/reviewForm";
+import { useNavigate } from "react-router-dom"
 
 export const ViewBook = () => {
   const { store, actions } = useContext(Context);
   const location = useLocation();
   const book = location.state?.book;
   const [comment, setComment] = useState('');
-
+  const navigate = useNavigate();
 
   const handleClick = () => {
     const reviewData = {
@@ -23,7 +24,7 @@ export const ViewBook = () => {
       comment: comment
     };
 
-    fetch('https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews', {
+    fetch(process.env.BACKEND_URL + 'api/reviews', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,11 +42,15 @@ export const ViewBook = () => {
       .then(data => {
         console.log('Review added successfully:', data);
         alert("¡Review añadida correctamente!");
+        setTimeout(() => {
+          navigate("/profile");
+        }, 0);
       })
       .catch(error => {
         console.error('Error adding review:', error);
         alert("Vaya, ha ocurrido un error añadiendo tu review...");
       });
+  
   };
 
   return (

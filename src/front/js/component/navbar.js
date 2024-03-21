@@ -11,7 +11,7 @@ export const Navbar = () => {
 		actions.logout()
 	}
 	return (
-		<nav className="navbar navbar-light" style={{ backgroundColor: "#5F5F5F" }}>
+		<nav className="navbar navbar-light" style={{ backgroundColor: "#5F5F5F" }} boxshadow="0 8px 16px rgba(0,0,0,0.5)">
 			<Link to="/">
 				<Logo /> {/* Use the Logo component */}
 			</Link>
@@ -22,12 +22,12 @@ export const Navbar = () => {
 						<Button variant="info"> Signup </Button>
 					</Link>
 				</Link> :
-				<div>
-					<button onClick={handleClick} className="btn btn-danger btn-sm">Log out</button>
-					<Link to="/profile"><Button variant="outline-warning">Profile</Button></Link>
-				</div>
-					
-					
+					<div>
+						<button onClick={handleClick} className="btn btn-danger btn-sm">Log out</button>
+						<Link to="/profile"><Button variant="outline-warning">Profile</Button></Link>
+					</div>
+
+
 				}
 			</div>
 		</nav>
