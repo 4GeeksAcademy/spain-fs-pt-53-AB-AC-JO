@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import library.jpg from '../Img/library.jpg'
+import libraryImage  from "../../img/library.jpg"
 
 export const Jumbotron = () => {
 
@@ -9,7 +9,7 @@ export const Jumbotron = () => {
         paddingLeft: 0,
         height: '600px',
         position: 'relative',
-        backgroundImage: "url('https://img.freepik.com/foto-gratis/gran-estanteria-madera-anticuada-biblioteca-interior-generada-inteligencia-artificial_188544-126855.jpg?t=st=1710963765~exp=1710967365~hmac=6e9f0d9991d8a4231b0a164a66e073801c2a5cec01928a7e03b984409080ec99&w=1380')",
+        backgroundImage: `url(${libraryImage})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
