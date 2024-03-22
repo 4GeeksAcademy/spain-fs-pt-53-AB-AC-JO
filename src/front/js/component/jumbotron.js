@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import libraryImage from "../../img/library.jpg"
 
 export const Jumbotron = () => {
+    const { store, actions } = useContext(Context);
 
-    
     const headerStyles = {
         paddingLeft: 0,
         height: '600px',
@@ -42,11 +43,13 @@ export const Jumbotron = () => {
                             ¿Te interesa?
                         </h4>
                         <div>
-                            <Link to="/signup">
-                                <Button className="btn btn-outline-dark btn-lg" style={{ color: 'white', backgroundColor: '#8FBF9F', borderColor: '#5f5f5f', }}>
-                                    Únete aquí
-                                </Button>
-                            </Link>
+                            {!store.token ?
+                                <Link to="/signup">
+                                    <Button className="btn btn-outline-dark btn-lg" style={{ color: 'white', backgroundColor: '#8FBF9F', borderColor: '#5f5f5f', }}>
+                                        Únete aquí
+                                    </Button>
+                                </Link> : <Link to="/profile"><Button>Añadir una review</Button></Link>}
+
                         </div>
                     </Col>
                 </Row>

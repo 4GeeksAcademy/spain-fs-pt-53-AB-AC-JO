@@ -3,8 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import "../../styles/navbar.css";
-import Logo from "./logo";
-
+import Logo from "../component/logo"
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
