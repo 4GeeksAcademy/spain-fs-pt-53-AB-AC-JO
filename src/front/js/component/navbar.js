@@ -33,8 +33,6 @@ export const Navbar = () => {
 						<Link to="/profile"><Button variant="outline-warning">Profile</Button></Link>
 						<button onClick={handleModify}>Modificar datos</button>
 					</div>
-
-
 				}
 			</div>
 		</nav>

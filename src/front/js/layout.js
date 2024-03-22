@@ -42,7 +42,7 @@ const Layout = () => {
                         <Route element={<ChangePasswordForm/>} path="/updateprofile" />
                         <Route element={<About />} path="/about" />
                         <Route element={<Single />} path="/single/:theid" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<h1>Vaya, parece que aquí no hay nada...</h1>} path="*"/>
                     </Routes>
                     <Footer />
                 </ScrollToTop>
