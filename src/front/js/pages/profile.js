@@ -18,8 +18,7 @@ export const Profile = () => {
 	};
 	const fetchReviews = async () => {
 		try {
-			const response = await fetch(
-				'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews/current_user',
+			const response = await fetch(process.env.BACKEND_URL + 'api/reviews/current_user',
 				{
 					method: 'GET',
 					headers: {
