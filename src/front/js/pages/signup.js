@@ -59,6 +59,11 @@ export const Signup = () => {
                             Enviar
                         </Button>
                     </div>
+                    <div>
+                        <a href="#" className="text-decoration-none" onClick={() => { navigate("/login"); }}>
+                            ¿Ya estás registrado? Haz click aquí para logarte
+                        </a>
+                    </div>
                 </Form>
             </div>
         </div>
