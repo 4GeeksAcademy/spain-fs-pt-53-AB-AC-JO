@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 import "../../styles/addReview.css";
 
 
-export const ViewBook = () => {
+export const AddReview = () => {
   const { store, actions } = useContext(Context);
   const location = useLocation();
   const book = location.state?.book;
@@ -64,9 +64,7 @@ export const ViewBook = () => {
         <Form.Group controlId="reviewText">
           <Form.Label>Reseña</Form.Label>
           <Form.Control  as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)}  />
-
         </Form.Group>
-
         <button  onClick={handleClick}>Añadir review</button>
       </div>
     </div>

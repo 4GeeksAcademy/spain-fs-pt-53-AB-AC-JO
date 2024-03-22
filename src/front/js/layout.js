@@ -4,12 +4,11 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
 import { Profile } from "./pages/profile";
-import { Single } from "./pages/single";
-import { ViewBook } from "./pages/addReview"
+import { AddReview } from "./pages/addReview";
+import { SingleReview } from "./pages/singleReview"
 import injectContext from "./store/appContext";
 import About from "./pages/about";
 import { ChangePasswordForm } from "./pages/changePasswordForm";
@@ -33,15 +32,14 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Demo />} path="/demo" />
                         <Route element={<Login />} path="/login" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Profile />} path="/profile" />
-                        <Route element={<ViewBook />} path="/viewbook" />
+                        <Route element={<AddReview />} path="/addreview" />
                         <Route element={<ModifyReview />} path="/modifyreview" />
+                        <Route element={<SingleReview />} path="/singlereview" />
                         <Route element={<ChangePasswordForm/>} path="/updateprofile" />
                         <Route element={<About />} path="/about" />
-                        <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Vaya, parece que aquí no hay nada...</h1>} path="*"/>
                     </Routes>
                     <Footer />

@@ -28,7 +28,6 @@ export const Signup = () => {
 
     return (
         <div className="container text-center mt-5 d-flex justify-content-center">
-            <backgroundImage></backgroundImage>
             <div className="col-md-6">
                 <h5>Bienvenido, registrate aquí</h5>
                 <Form>
@@ -59,6 +58,11 @@ export const Signup = () => {
                         <Button className='justify-content-center mt-3' variant="dark" onClick={handleSubmit}>
                             Enviar
                         </Button>
+                    </div>
+                    <div>
+                        <a href="#" className="text-decoration-none" onClick={() => { navigate("/login"); }}>
+                            ¿Ya estás registrado? Haz click aquí para logarte
+                        </a>
                     </div>
                 </Form>
             </div>

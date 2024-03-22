@@ -2,15 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { Jumbotron } from "../component/jumbotron"
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate, useLocation  } from "react-router-dom";
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 export const Home = () => {
 	const { store } = useContext(Context);
 	const [reviews, setReviews] = useState([]);
-	
-	
+	const navigate = useNavigate();
+	const location = useLocation();
+
+	const handleInfo = (review) => {
+		navigate(`/singlereview`, { state: { review: review } });
+	  };
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await fetch(process.env.BACKEND_URL + '/api/reviews');
@@ -91,7 +95,7 @@ export const Home = () => {
 							<h4>{review.book.author}</h4>
 							<p>Review: {review.comment}</p>
 							<p>Usuario: {review.username}</p>
-							<button>Más información</button>
+							<button id="more-info-button" onClick={() => handleInfo(review)}>Más información</button>
 						</div>
 					))}
 				</div>

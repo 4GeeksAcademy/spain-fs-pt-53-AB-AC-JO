@@ -6,7 +6,7 @@ export const Results = ({ book }) => {
 
   const navigate = useNavigate();
   const handleAddReview = () => {
-    navigate('/viewbook', { state: { book: book } });
+    navigate('/addreview', { state: { book: book } });
   };
   return (
     <Card style={{ width: '18rem' }} className="mb-3">
