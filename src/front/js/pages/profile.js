@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card, Button } from 'react-bootstrap';
 import { Search } from "../component/search";
+import "../../styles/profile.css";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -110,14 +111,14 @@ export const Profile = () => {
 			<div>
 				{reviews.map((review) => (
 					<div key={review.review_id}>
-						<Card style={{ width: '18rem' }} className="mb-3">
-							<Card.Img variant="top" src={review.book.small_thumbnail} />
-							<Card.Body>
-								<Card.Title>{review.book.title}</Card.Title>
-								<Card.Text>
+						<card style={{ width: '18rem' }} >
+							<card.img variant="top" src={review.book.small_thumbnail} />
+							<card.body>
+								<card.title>{review.book.title}</card.title>
+								<card.text>
 									<strong>Autor(es):</strong>{" "}
 									{review.book.author}
-								</Card.Text>
+								</card.text>
 								<Card.Text>
 									<strong>Páginas:</strong> {review.book.pages}
 								</Card.Text>
@@ -127,16 +128,16 @@ export const Profile = () => {
 								<Card.Text>
 									<strong>Comentario:</strong> {review.comment}
 								</Card.Text>
-								<Button onClick={() => handleModifyReview(review)}>Modificar review</Button>
-								<button
+								<button className="button-modify" role="button" onClick={() => handleModifyReview(review)}>Modificar review</button>
+								<button className="button-delete" role="button"
 									data-id={review.review_id}
 									ref={el => deleteButtonsRef.current.push(el)}
 									onClick={() => deleteReview(review.review_id)}
 								>
 									Eliminar review
 								</button>
-							</Card.Body>
-						</Card>
+							</card.body>
+						</card>
 					</div>
 				))}
 			</div>

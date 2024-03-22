@@ -49,7 +49,7 @@ export const Login = () => {
 							</Button>
 						</div>
 						<div className="text-center mt-3">
-							Want to sign up? <Button variant="info" onClick={() => navigate("/signup")}>Click here</Button>
+							Want to sign up? <Button className="button-69" role="button" onClick={() => navigate("/signup")}>Click here</Button>
 						</div>
 					</Form>
 
