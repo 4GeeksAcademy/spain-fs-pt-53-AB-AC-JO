@@ -10,6 +10,7 @@ export const Home = () => {
 	const { store } = useContext(Context);
 	const [reviews, setReviews] = useState([]);
 	
+	
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await fetch(process.env.BACKEND_URL + '/api/reviews');
