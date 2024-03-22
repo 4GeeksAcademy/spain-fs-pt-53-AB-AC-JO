@@ -1,16 +1,19 @@
+
 .container {
     text-align: center;
     margin-top: 25px;
     padding-top: 20px;
-    background-color: #68a67d; /* Fondo naranja */
+    background-color: #68a67d;
+    /* Fondo naranja */
     padding: 20px;
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 10px;
+    /* Bordes redondeados */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 600px; /* Ancho del formulario */
-   
+    width: 600px;
+    /* Ancho del formulario */
     font-weight: lighter;
 }
 
-h5{
+h5 {
     font-weight: bold;
 }
