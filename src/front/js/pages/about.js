@@ -46,10 +46,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      <div className="text-center mt-5">
-        <p>Gracias por vistar nuestra app!</p>
-      </div>
     </div>
   );
 };

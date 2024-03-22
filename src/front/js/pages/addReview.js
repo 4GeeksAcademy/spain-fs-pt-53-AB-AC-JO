@@ -67,7 +67,7 @@ export const ViewBook = () => {
 
         </Form.Group>
 
-        <Button onClick={handleClick}>Añadir review</Button>
+        <button  onClick={handleClick}>Añadir review</button>
       </div>
     </div>
   )

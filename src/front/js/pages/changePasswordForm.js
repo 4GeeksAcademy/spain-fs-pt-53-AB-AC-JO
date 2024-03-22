@@ -69,9 +69,9 @@ export const ChangePasswordForm = () => {
           <Form.Control className='text-center input' type="password" placeholder="Confirmar nueva contraseña" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} />
         </Form.Group>
 
-        <Button className='justify-content-center boton' variant="dark" onClick={handleClick}>
+        <button className="button-69" role="button" onClick={handleClick}>
           Enviar
-        </Button>
+        </button>
       </Form>
       <Form className="mt-3">
         <Form.Group className="" controlId="visibility">
