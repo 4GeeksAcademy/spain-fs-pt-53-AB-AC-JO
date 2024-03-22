@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card, Button } from 'react-bootstrap';
-
+import { Search } from "../component/search";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -11,10 +11,11 @@ export const Profile = () => {
 	const navigate = useNavigate();
 	const [reviews, setReviews] = useState([]);
 	const deleteButtonsRef = useRef([]);
+	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
 	const handleModifyReview = (review) => {
 		navigate('/modifyreview', { state: { review: review, review_id: review.review_id } });
-	  };
+	};
 	const fetchReviews = async () => {
 		try {
 			const response = await fetch(
@@ -49,12 +50,10 @@ export const Profile = () => {
 
 	};
 
-	// Call the fetchReviews function
 	useEffect(() => {
 		fetchReviews();
 	}, []);
 
-	console.log(store, "Estoy en el profile")
 	useEffect(() => {
 		actions.syncToken();
 	}, []);
@@ -70,7 +69,7 @@ export const Profile = () => {
 
 	const deleteReview = async (reviewId) => {
 		try {
-			const response = await fetch(`https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews/${reviewId}`, {
+			const response = await fetch(process.env.BACKEND_URL + `api/reviews/${reviewId}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
@@ -84,6 +83,7 @@ export const Profile = () => {
 
 			const data = await response.json();
 			console.log(data.message);
+			alert('La review ha sido eliminada!');
 
 			// Find the index of the button in the deleteButtonsRef array
 			const buttonIndex = deleteButtonsRef.current.findIndex(button => button.dataset.id === reviewId);
@@ -94,13 +94,20 @@ export const Profile = () => {
 			}
 		} catch (error) {
 			console.error(error);
-		} 
+		}
+		setShowDeleteConfirmation(true);
 	};
+
+	useEffect(() => {
+		if (showDeleteConfirmation) {
+		  fetchReviews();
+		  setShowDeleteConfirmation(false);
+		}
+	  }, [showDeleteConfirmation]);
 
 	return (
 		<div>
-			<h1 className="text-center">Profile placeholder</h1>
-			{store.message}
+			<Search></Search>
 			<div>
 				{reviews.map((review) => (
 					<div key={review.review_id}>

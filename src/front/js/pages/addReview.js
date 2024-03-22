@@ -3,22 +3,16 @@ import { Card, Form, Button } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { Context } from "../store/appContext";
 import { ReviewForm } from "../component/reviewForm";
+import { useNavigate } from "react-router-dom"
 import "../../styles/addReview.css";
+
 
 export const ViewBook = () => {
   const { store, actions } = useContext(Context);
   const location = useLocation();
   const book = location.state?.book;
   const [comment, setComment] = useState('');
-
-  // const bringReviews = () => {
-  //   fetch('https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews/', {
-  //     method: 'GET',
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => console.log(data))
-  //     .catch(error => console.error(error));
-  // }
+  const navigate = useNavigate();
 
   const handleClick = () => {
     const reviewData = {
@@ -32,7 +26,7 @@ export const ViewBook = () => {
       comment: comment
     };
 
-    fetch('https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews', {
+    fetch(process.env.BACKEND_URL + 'api/reviews', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,12 +43,16 @@ export const ViewBook = () => {
       })
       .then(data => {
         console.log('Review added successfully:', data);
-        // Handle successful review addition
+        alert("¡Review añadida correctamente!");
+        setTimeout(() => {
+          navigate("/profile");
+        }, 0);
       })
       .catch(error => {
         console.error('Error adding review:', error);
-        // Handle error adding review
+        alert("Vaya, ha ocurrido un error añadiendo tu review...");
       });
+  
   };
 
   return (

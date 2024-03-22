@@ -2,23 +2,23 @@ import React, { useContext, useState, useEffect } from "react";
 import { Card, Form, Button } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import { Context } from "../store/appContext";
-
+import { useNavigate } from "react-router-dom"
 
 export const ModifyReview = () => {
   const { store, actions } = useContext(Context);
   const location = useLocation();
   const { review, review_id } = location.state;
   const [comment, setComment] = useState('');
+  const navigate = useNavigate();
 
   const handleSaveChanges = async () => {
-  
     try {
-      const response = await fetch(`https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/api/reviews/${review_id}`, {
+      const response = await fetch(process.env.BACKEND_URL + `api/reviews/${review_id}`, {
         method: 'PUT',
         headers: {
-					'Content-Type': 'application/json',
-					'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-				},
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+        },
         body: JSON.stringify({ comment: comment }),
       });
 
@@ -29,15 +29,13 @@ export const ModifyReview = () => {
       const data = await response.json();
       console.log(data.message);
 
-      // Update the review in the reviews array
-      setReviews(reviews =>
-        reviews.map(review =>
-          review.review_id === review_id ? { ...review, comment: updatedComment.comment } : review
-        )
-      );
-
+      alert("¡Review modificada correctamente!");
+      setTimeout(() => {
+        navigate("/profile");
+      }, 0);
     } catch (error) {
-      console.error(error);
+      console.error("Error updating review:", error);
+      alert("Vaya, ha ocurrido un error modificando tu review...");
     }
   };
 
