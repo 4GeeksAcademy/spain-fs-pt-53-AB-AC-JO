@@ -16,7 +16,7 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar navbar-light sticky-top" style={{ backgroundColor: "#5F5F5F" }} boxshadow="0 16px 24px rgba(0,0,0,0.5)">
+		<nav className="navbar" boxshadow="0 16px 24px rgba(0,0,0,0.5)">
 			<Link to="/">
 				<Logo />
 			</Link>

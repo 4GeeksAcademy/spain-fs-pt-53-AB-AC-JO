@@ -73,7 +73,7 @@ export const ChangePasswordForm = () => {
           Enviar
         </button>
       </Form>
-      <Form className="mt-3">
+      <Form className="visibilidad">
         <Form.Group className="" controlId="visibility">
           <Form.Label className="label">Visibilidad del perfil: </Form.Label>
           <Form.Select className='text-center input' value={userVisibility} onChange={(e) => setUserVisibility(e.target.value)}>
@@ -82,9 +82,9 @@ export const ChangePasswordForm = () => {
           </Form.Select>
         </Form.Group>
 
-        <Button variant="dark" onClick={handleSaveVisibility}>
+        <button className="button-69" role="button"  onClick={handleSaveVisibility}>
           Actualizar
-        </Button>
+        </button>
       </Form>
     </>
   );
