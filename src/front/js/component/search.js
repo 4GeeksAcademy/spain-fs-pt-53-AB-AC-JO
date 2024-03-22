@@ -3,7 +3,7 @@ import { trackPromise } from 'react-promise-tracker';
 import { Results } from "./results"
 
 
-const apiKey = "AIzaSyCS2PIzm7JZBy6eR6K-WlJ45aWGcZRnwbo";
+const apiKey = process.env.API_KEY
 const apiURL = "https://www.googleapis.com/books/v1/volumes";
 const fields = "fields=items(id,volumeInfo(title,subtitle,authors,imageLinks(thumbnail,smallThumbnail),publishedDate,pageCount))"
 
@@ -56,8 +56,8 @@ export class Search extends React.Component {
 	render() {
 
 		return (
-			<div className="header_content">
-				<h1>Buscador de libros</h1>
+			<div className="header_content text-center">
+				<h1>Buscador un libro para añadir una review aquí</h1>
 
 				<form id="form" onSubmit={e => this.handleSubmit(e)}>
 					<legend />
@@ -76,9 +76,10 @@ export class Search extends React.Component {
 					</label>
 					<button id="search">Search</button>
 				</form>
+				<h1>Mis reviews</h1>
 				<div className="row">
 					{this.state.books && this.state.books.map((book, index) => (
-						<div key={index} className="col-md-3">
+						<div key={index} className="col-md-4">
 							<Results book={book} />
 						</div>
 					))}
@@ -86,7 +87,6 @@ export class Search extends React.Component {
 				<p id="error-message" className="error-message">
 					{this.state.error}
 				</p>
-
 			</div>
 		);
 	};

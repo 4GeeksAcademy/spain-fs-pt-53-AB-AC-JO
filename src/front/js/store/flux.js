@@ -1,10 +1,14 @@
-const backUrl = 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3001.app.github.dev/'   // Hay que modificar esta URL con la 3001 (La de nuestro back) y modifica el resto.
+const backUrl = process.env.BACKEND_URL  // Hay que modificar esta URL con la 3001 (La de nuestro back) y modifica el resto.
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
 			message: null,
 			error: null,
+			currentUser: {
+				token: null,
+				visibility: null,
+			},
 			reviews: [],
 			demo: [
 				{
@@ -48,7 +52,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (res.status === 200) {
 						const data = await res.json();
 						sessionStorage.setItem("token", data.access_token);
-						setStore({ token: data.access_token });
+						setStore({
+							token: data.access_token, currentUser: {
+								token: data.access_token,
+								visibility: data.visibility,
+							},
+						});
 						return true;
 					} else if (res.status === 401) {
 						const errorData = await res.json();
@@ -142,24 +151,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return true;
 					} else {
 						throw new Error('Failed to change password');
-						alert("Ha ocurrido un error");
 					}
 				} catch (error) {
 					console.error('Error changing password:', error);
 					return false;
 				}
 			},
-			
+
+
 			getPublicReviews() { 				// Testing not done yet, cross your fingers
 				return async () => {
 					try {
-						const res = await fetch(backUrl + '/api/reviews');
+						const resp = await fetch(backUrl + '/api/reviews', {
+							method: 'GET',
+							headers: {
+								'Content-Type': 'application/json'
+							}
+						});
 
-						if (!res.ok) {
+						if (!resp.ok) {
 							throw new Error('Network response was not ok');
 						}
 
-						const data = await res.json();
+						const data = await resp.json();
 
 						// Dispatch the GET_REVIEWS_SUCCESS action with the response data
 						setStore({ reviews: data });
