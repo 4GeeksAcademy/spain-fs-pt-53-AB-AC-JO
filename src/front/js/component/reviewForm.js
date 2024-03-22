@@ -32,10 +32,6 @@ export const ReviewForm = () => {
         <div>
           <strong>Páginas:</strong> {book.volumeInfo.pageCount}
         </div>
-        {/* <Form.Group controlId="reviewText">
-          <Form.Label>Reseña</Form.Label>
-          <Form.Control as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)} />
-        </Form.Group> */}
       </Card.Body>
     </Card>
 
