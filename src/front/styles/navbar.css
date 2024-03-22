@@ -7,6 +7,9 @@
   height: 20px;
 }
 
+.button-68, .button-69, .button-70, .button-71 {
+  margin-bottom: 10px;
+}
 /*
     login
 */
@@ -23,7 +26,7 @@
   display: inline-block;
   font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: normal;
   line-height: 1.5;
   outline: none;
@@ -73,7 +76,7 @@
   display: inline-block;
   font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: normal;
   line-height: 1.5;
   outline: none;
@@ -123,7 +126,7 @@
   display: inline-block;
   font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: normal;
   line-height: 1.5;
   outline: none;
@@ -165,7 +168,7 @@
 .button-71 {
   appearance: none;
   backface-visibility: hidden;
-  background-color: #c2baa6;
+  background-color: #5f5f5f;
   border-radius: 8px;
   border-style: none;
   box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
@@ -175,7 +178,7 @@
   display: inline-block;
   font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 200;
   letter-spacing: normal;
   line-height: 1.5;
   outline: none;

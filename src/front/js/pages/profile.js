@@ -111,14 +111,14 @@ export const Profile = () => {
 			<div>
 				{reviews.map((review) => (
 					<div key={review.review_id}>
-						<card style={{ width: '18rem' }} >
-							<card.img variant="top" src={review.book.small_thumbnail} />
-							<card.body>
-								<card.title>{review.book.title}</card.title>
-								<card.text>
+						<Card style={{ width: '18rem' }} className="mb-3">
+							<Card.Img variant="top" src={review.book.small_thumbnail} />
+							<Card.Body>
+								<Card.Title>{review.book.title}</Card.Title>
+								<Card.Text>
 									<strong>Autor(es):</strong>{" "}
 									{review.book.author}
-								</card.text>
+								</Card.Text>
 								<Card.Text>
 									<strong>Páginas:</strong> {review.book.pages}
 								</Card.Text>
@@ -136,8 +136,8 @@ export const Profile = () => {
 								>
 									Eliminar review
 								</button>
-							</card.body>
-						</card>
+							</Card.Body>
+						</Card>
 					</div>
 				))}
 			</div>

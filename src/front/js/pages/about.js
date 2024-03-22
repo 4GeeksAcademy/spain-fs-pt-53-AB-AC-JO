@@ -7,9 +7,7 @@ import "../../styles/about.css";
 const About = () => {
   return (
     <div className="about">
-      
-
-      <div className="about col-6 mb-4">
+      <div className="about  ">
         <div className="cardAbout">
           <div className="cardAbout-body">
             <h5 className="cardAbout-title">Abielsaf</h5>
@@ -27,7 +25,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="about col-6 mb-4">
+      <div className="about  ">
         <div className="cardAbout">
           <div className="cardAbout-body">
             <h5 className="cardAbout-title">AnaMCS26</h5>

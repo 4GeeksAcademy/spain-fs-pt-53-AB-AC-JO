@@ -28,9 +28,9 @@ export const Results = ({ book }) => {
         <Card.Text>
           <strong>Páginas:</strong> {book.volumeInfo.pageCount}
         </Card.Text>
-        <Button onClick={handleAddReview}>
+        <button className="button-71" role="button" onClick={handleAddReview}>
           Añadir review
-        </Button>
+        </button>
       </Card.Body>
     </Card>
 

@@ -1,6 +1,6 @@
-card{
-    
-}
+.button-modify, .button-delete {
+    margin-bottom: 10px; /* add this line */
+  }
 .button-modify {
     appearance: none;
     backface-visibility: hidden;
