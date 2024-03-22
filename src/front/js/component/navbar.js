@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import "../../styles/navbar.css";
 import Logo from "./logo";
@@ -11,6 +11,11 @@ export const Navbar = () => {
 	const handleClick = () => {
 		actions.logout()
 	}
+	const navigate = useNavigate();
+	const handleModify = () => {
+		navigate('/updateprofile')
+	}
+
 	return (
 		<nav className="navbar navbar-light sticky-top" style={{ backgroundColor: "#5F5F5F" }} boxshadow="0 16px 24px rgba(0,0,0,0.5)">
 			<Link to="/">
@@ -26,6 +31,7 @@ export const Navbar = () => {
 					<div>
 						<button onClick={handleClick} className="btn btn-danger btn-sm">Log out</button>
 						<Link to="/profile"><Button variant="outline-warning">Profile</Button></Link>
+						<button onClick={handleModify}>Modificar datos</button>
 					</div>
 
 
