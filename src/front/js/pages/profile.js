@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { Card, Button } from 'react-bootstrap';
 import { Search } from "../component/search";
+import "../../styles/profile.css";
 
 export const Profile = () => {
 	const { store, actions } = useContext(Context);
@@ -127,8 +128,8 @@ export const Profile = () => {
 								<Card.Text>
 									<strong>Comentario:</strong> {review.comment}
 								</Card.Text>
-								<Button onClick={() => handleModifyReview(review)}>Modificar review</Button>
-								<button
+								<button className="button-modify" role="button" onClick={() => handleModifyReview(review)}>Modificar review</button>
+								<button className="button-delete" role="button"
 									data-id={review.review_id}
 									ref={el => deleteButtonsRef.current.push(el)}
 									onClick={() => deleteReview(review.review_id)}

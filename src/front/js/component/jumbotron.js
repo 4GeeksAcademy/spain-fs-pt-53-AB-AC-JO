@@ -45,11 +45,10 @@ export const Jumbotron = () => {
                         <div>
                             {!store.token ?
                                 <Link to="/signup">
-                                    <Button className="btn btn-outline-dark btn-lg" style={{ color: 'white', backgroundColor: '#8FBF9F', borderColor: '#5f5f5f', }}>
+                                    <Button className="button-69" role="button">
                                         Únete aquí
                                     </Button>
                                 </Link> : <Link to="/profile"><Button>Añadir una review</Button></Link>}
-
                         </div>
                     </Col>
                 </Row>
