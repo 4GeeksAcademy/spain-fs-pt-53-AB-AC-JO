@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import "../../styles/navbar.css";
 import Logo from "./logo";
 
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const handleClick = () => {

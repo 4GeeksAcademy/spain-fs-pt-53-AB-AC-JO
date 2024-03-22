@@ -90,6 +90,7 @@ export const Home = () => {
 							<h4>{review.book.author}</h4>
 							<p>Review: {review.comment}</p>
 							<p>Usuario: {review.username}</p>
+							<button>Más información</button>
 						</div>
 					))}
 				</div>

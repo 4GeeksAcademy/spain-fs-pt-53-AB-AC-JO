@@ -5,6 +5,7 @@ import libraryImage from "../../img/library.jpg"
 
 export const Jumbotron = () => {
 
+    
     const headerStyles = {
         paddingLeft: 0,
         height: '600px',
