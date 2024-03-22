@@ -23,15 +23,15 @@ export const Navbar = () => {
 			</Link>
 			<div className=" ml-auto">
 				{!store.token ? <Link to="/login">
-					<Button className="btn btn-success btn-sm">Log in</Button>
+					<button className="button-68" role="button">Log in</button>
 					<Link to="/signup">
-						<Button variant="info"> Signup </Button>
+						<button className="button-69" role="button"> Signup </button>
 					</Link>
 				</Link> :
 					<div>
-						<button onClick={handleClick} className="btn btn-danger btn-sm">Log out</button>
-						<Link to="/profile"><Button variant="outline-warning">Profile</Button></Link>
-						<button onClick={handleModify}>Modificar datos</button>
+						<button onClick={handleClick} className="button-70" role="button">Log out</button>
+						<Link to="/profile"><button className="button-68" role="button">Profile</button></Link>
+						<button className="button-71" role="button" onClick={handleModify}>Modificar datos</button>
 					</div>
 				}
 			</div>
