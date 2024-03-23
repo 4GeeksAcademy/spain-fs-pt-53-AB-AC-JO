@@ -1,0 +1,70 @@
+.searchinput {
+    align-items: center;
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    background-color: #f1ddad;
+    /* Fondo naranja */
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-color: #f1ddad;
+    height: 40px;
+
+}
+
+.searchinput:hover {
+    background-color: #eea941;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+}
+
+#search {
+    appearance: none;
+    backface-visibility: hidden;
+    background-color: #F18F01;
+    border-radius: 8px;
+    border-style: none;
+    box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.5;
+    outline: none;
+    overflow: hidden;
+    padding: 10px 15px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    white-space: nowrap;
+}
+
+#search:hover {
+    background-color: #eea941;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+}
+
+#search:active {
+    transform: translateY(2px);
+    transition-duration: .35s;
+}
+
+#search:hover {
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}

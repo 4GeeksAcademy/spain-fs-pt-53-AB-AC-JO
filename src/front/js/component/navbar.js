@@ -28,9 +28,10 @@ export const Navbar = () => {
 					</Link>
 				</Link> :
 					<div>
-						<button onClick={handleClick} className="button-70" role="button">Log out</button>
-						<Link to="/profile"><button className="button-68" role="button">Profile</button></Link>
-						<button className="button-71" role="button" onClick={handleModify}>Modificar datos</button>
+						<button onClick={handleClick} className="button-70" role="button">
+						<i class="fa-sharp fa-solid fa-right-from-bracket"></i></button>
+						<Link to="/profile"><button className="button-68" role="button"><i class="fa-regular fa-user"></i></button></Link>
+						<button className="button-71" role="button" onClick={handleModify}><i class="fa-solid fa-gear"></i></button>
 					</div>
 				}
 			</div>
