@@ -1,6 +1,7 @@
 import React from 'react';
 import { trackPromise } from 'react-promise-tracker';
 import { Results } from "./results"
+import "../../styles/search.css";
 
 
 const apiKey = process.env.API_KEY
@@ -62,8 +63,8 @@ export class Search extends React.Component {
 				<form id="form" onSubmit={e => this.handleSubmit(e)}>
 					<legend />
 
-					<label htmlFor="searchTerm">
-						<input
+					<label className='searchlabel' htmlFor="searchTerm">
+						<input className='searchinput'
 							type="text"
 							name="searchTerm"
 							id="searchTerm"
@@ -74,7 +75,7 @@ export class Search extends React.Component {
 							onChange={this.handleChange}
 						/>
 					</label>
-					<button id="search">Search</button>
+					<button  id="search"><i class="fa-brands fa-searchengin"></i></button>
 				</form>
 				<h1>Mis reviews</h1>
 				<div className="row">
