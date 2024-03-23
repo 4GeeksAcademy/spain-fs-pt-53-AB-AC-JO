@@ -1,16 +1,52 @@
 .navbar {
-  background-color: #c2baa6;
-  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-  width: 20px;
-  height: 20px;
+.navbar-links {
+  display: flex;
+  align-items: center;
 }
 
-.button-68, .button-69, .button-70, .button-71 {
-  margin-bottom: 10px;
+.navbar-buttons {
+  display: flex;
+  align-items: center;
 }
+
+.button-68,
+.button-69,
+.button-70,
+.button-71 {
+  margin-left: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1px), 0 calc(100% - 1px));
+    transition: clip-path 0.3s;
+  }
+
+  .navbar-buttons button {
+    margin: 0.5rem 0;
+  }
+
+  .navbar-links.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
 /*
     login
 */
@@ -25,7 +61,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 200;
   letter-spacing: normal;
@@ -75,7 +111,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 200;
   letter-spacing: normal;
@@ -125,7 +161,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 200;
   letter-spacing: normal;
@@ -177,7 +213,7 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 200;
   letter-spacing: normal;
