@@ -5,10 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			error: null,
-			currentUser: {
-				token: null,
-				visibility: null,
-			},
+			currentUser: null,
 			reviews: [],
 			demo: [
 				{
@@ -52,11 +49,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (res.status === 200) {
 						const data = await res.json();
 						sessionStorage.setItem("token", data.access_token);
+						sessionStorage.setItem("currentUser", data.user_id);
 						setStore({
-							token: data.access_token, currentUser: {
-								token: data.access_token,
-								visibility: data.visibility,
-							},
+							token: data.access_token,
 						});
 						return true;
 					} else if (res.status === 401) {
@@ -71,6 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			logout: () => {
 				sessionStorage.removeItem("token");
+				sessionStorage.removeItem("currentUser");
 				console.log("session ends")
 				setStore({ token: null })
 			},

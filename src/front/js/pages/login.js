@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import "../../styles/login.css";
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom"
@@ -19,7 +18,19 @@ export const Login = () => {
 
 	const handleClick = () => {
 		actions.login(email, password)
-	};
+		  .then(response => {
+			if (response.error) {
+			  setError(response.error);
+			} else {
+			  if (response.status === 200) {
+				navigate("/");
+			  }
+			}
+		  })
+		  .catch(error => {
+			setError(error);
+		  });
+	  };
 
 
 	if (store.token && store.token != "" && store.token != null) navigate("/")
