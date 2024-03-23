@@ -51,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						sessionStorage.setItem("token", data.access_token);
 						sessionStorage.setItem("currentUser", data.user_id);
 						setStore({
-							token: data.token,
+							token: data.access_token,
 						});
 						return true;
 					} else if (res.status === 401) {
