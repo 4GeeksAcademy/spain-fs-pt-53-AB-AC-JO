@@ -18,8 +18,19 @@ export const Login = () => {
 
 	const handleClick = () => {
 		actions.login(email, password)
-		navigate("/");
-	};
+		  .then(response => {
+			if (response.error) {
+			  setError(response.error);
+			} else {
+			  if (response.status === 200) {
+				navigate("/");
+			  }
+			}
+		  })
+		  .catch(error => {
+			setError(error);
+		  });
+	  };
 
 
 	if (store.token && store.token != "" && store.token != null) navigate("/")

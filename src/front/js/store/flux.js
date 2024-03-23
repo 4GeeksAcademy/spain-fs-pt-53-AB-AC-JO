@@ -68,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem("currentUser");
 				console.log("session ends")
-				setStore({ token: null,currentUser: null, })
+				setStore({ token: null })
 			},
 			register: async (email, password, user, visibility) => {
 				try {
