@@ -11,9 +11,8 @@ export const Home = () => {
 	const [reviews, setReviews] = useState([]);
 	const navigate = useNavigate();
 	const location = useLocation();
-
 	const currentUser = sessionStorage.getItem("currentUser");
-	console.log("Current user:", currentUser);
+	
 
 	const handleInfo = (review) => {
 		navigate(`/singlereview`, { state: { review: review } });
@@ -29,7 +28,7 @@ export const Home = () => {
 		};
 
 		fetchData().catch(err => console.error(err));
-	}, []);
+	}, [currentUser]);
 
 	useEffect(() => {
 		if (reviews.length) {
