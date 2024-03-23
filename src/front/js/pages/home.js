@@ -12,6 +12,9 @@ export const Home = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
+	const currentUser = sessionStorage.getItem("currentUser");
+	console.log("Current user:", currentUser);
+
 	const handleInfo = (review) => {
 		navigate(`/singlereview`, { state: { review: review } });
 	  };
@@ -88,16 +91,17 @@ export const Home = () => {
 			<h2>Aquí puedes ver las reviews de nuestros usuarios:</h2>
 			<div className="swiper">
 				<div className="swiper-wrapper">
-					{reviews.map((review) => (
-						<div key={review.review_id} className="swiper-slide">
-							<img src={review.book.thumbnail} alt={review.book.title} />
-							<h3>{review.book.title}</h3>
-							<h4>{review.book.author}</h4>
-							<p>Review: {review.comment}</p>
-							<p>Usuario: {review.username}</p>
-							<button id="more-info-button" onClick={() => handleInfo(review)}>Más información</button>
-						</div>
-					))}
+					{reviews.filter(review => review.user_id !== parseInt(currentUser))
+						.map((review) => (
+							<div key={review.review_id} className="swiper-slide">
+								<img src={review.book.thumbnail} alt={review.book.title} />
+								<h3>{review.book.title}</h3>
+								<h4>{review.book.author}</h4>
+								<p>Review: {review.comment}</p>
+								<p>Usuario: {review.username}</p>
+								<button id="more-info-button" onClick={() => handleInfo(review)}>Más información</button>
+							</div>
+						))}
 				</div>
 				<div className="swiper-pagination"></div>
 			</div>
