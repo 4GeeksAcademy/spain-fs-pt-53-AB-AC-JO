@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			error: null,
 			currentUser: null,
 			reviews: [],
+			visibility: null,
 			demo: [
 				{
 					title: "FIRST",
