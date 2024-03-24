@@ -46,21 +46,21 @@ export const Login = () => {
 
 					<Form>
 						<Form.Group className="mb-3" controlId="formBasicEmail">
-							<Form.Label>Email address</Form.Label>
-							<Form.Control className='text-center' type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
+							<Form.Label>Email</Form.Label>
+							<Form.Control className='text-center' type="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} />
 						</Form.Group>
 
 						<Form.Group className="mb-3" controlId="formBasicPassword">
-							<Form.Label>Password</Form.Label>
-							<Form.Control className='text-center' type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+							<Form.Label>Contraseña</Form.Label>
+							<Form.Control className='text-center' type="password" placeholder="contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
 						</Form.Group>
 						<div className="text-center mt-3">
 							<Button className='justify-content-center' variant="dark" onClick={handleClick}>
-								Submit
+								Enviar
 							</Button>
 						</div>
 						<div className="text-center mt-3">
-							Want to sign up? <Button className="button-69" role="button" onClick={() => navigate("/signup")}>Click here</Button>
+							¿Quieres registrarte? <Button className="button-69" role="button" onClick={() => navigate("/signup")}>Haz click aquí</Button>
 						</div>
 					</Form>
 

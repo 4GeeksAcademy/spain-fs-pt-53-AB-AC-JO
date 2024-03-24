@@ -47,7 +47,7 @@ def create_token():
         return jsonify({"msg": "Email o contraseña incorrectos"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token, user_id=user.id)
+    return jsonify(access_token=access_token, user_id=user.id, visibility=user.visibility)
 
 
 @api.route("/hello", methods=["GET"])

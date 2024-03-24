@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
+// import "../../styles/home.css";
 import "../../styles/changepassword.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -69,11 +70,11 @@ export const ChangePasswordForm = () => {
           <Form.Control className='text-center input' type="password" placeholder="Confirmar nueva contraseña" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} />
         </Form.Group>
 
-        <button className="button-69" role="button" onClick={handleClick}>
+        <Button className='justify-content-center boton' variant="dark" onClick={handleClick}>
           Enviar
-        </button>
+        </Button>
       </Form>
-      <Form className="visibilidad">
+      <Form className="mt-3">
         <Form.Group className="" controlId="visibility">
           <Form.Label className="label">Visibilidad del perfil: </Form.Label>
           <Form.Select className='text-center input' value={userVisibility} onChange={(e) => setUserVisibility(e.target.value)}>
@@ -82,10 +83,11 @@ export const ChangePasswordForm = () => {
           </Form.Select>
         </Form.Group>
 
-        <button className="button-69" role="button"  onClick={handleSaveVisibility}>
+        <Button variant="dark" onClick={handleSaveVisibility}>
           Actualizar
-        </button>
+        </Button>
       </Form>
     </>
+
   );
 };

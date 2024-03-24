@@ -22,14 +22,14 @@ export const Signup = () => {
                 navigate("/login");
             }
         } else {
-            alert("Passwords do not match.");
+            alert("Las contraseñas no coinciden.");
         }
     };
 
     return (
         <div className="container text-center mt-5 d-flex justify-content-center">
             <div className="col-md-6">
-                <h5>Bienvenido, registrate aquí</h5>
+                <h5>Bienvenid@, registrate aquí</h5>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
