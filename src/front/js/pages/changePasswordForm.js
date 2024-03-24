@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
-// import "../../styles/home.css";
 import "../../styles/changepassword.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -31,9 +30,9 @@ export const ChangePasswordForm = () => {
       const response = await fetch(process.env.BACKEND_URL + 'api/user/visibility', {
         method: 'PUT',
         headers: {
-					'Content-Type': 'application/json',
-					'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-				},
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+        },
         body: JSON.stringify({ visibility: userVisibility }),
       });
 
@@ -50,7 +49,7 @@ export const ChangePasswordForm = () => {
       alert("Uh oh, parece que ha ocurrido un error.");
     }
   };
-  
+
 
   return (
     <>
@@ -74,7 +73,7 @@ export const ChangePasswordForm = () => {
           Enviar
         </Button>
       </Form>
-      <Form className="mt-3">
+      <Form className="visibilidad">
         <Form.Group className="" controlId="visibility">
           <Form.Label className="label">Visibilidad del perfil: </Form.Label>
           <Form.Select className='text-center input' value={userVisibility} onChange={(e) => setUserVisibility(e.target.value)}>
@@ -82,12 +81,10 @@ export const ChangePasswordForm = () => {
             <option value="private">Privado</option>
           </Form.Select>
         </Form.Group>
-
-        <Button variant="dark" onClick={handleSaveVisibility}>
+        <Button className=" btn button-69" onClick={handleSaveVisibility}>
           Actualizar
         </Button>
       </Form>
     </>
-
   );
 };
