@@ -18,19 +18,19 @@ export const Login = () => {
 
 	const handleClick = () => {
 		actions.login(email, password)
-		  .then(response => {
-			if (response.error) {
-			  setError(response.error);
-			} else {
-			  if (response.status === 200) {
-				navigate("/");
-			  }
-			}
-		  })
-		  .catch(error => {
-			setError(error);
-		  });
-	  };
+			.then(response => {
+				if (response.error) {
+					setError(response.error);
+				} else {
+					if (response.status === 200) {
+						navigate("/");
+					}
+				}
+			})
+			.catch(error => {
+				setError(error);
+			});
+	};
 
 
 	if (store.token && store.token != "" && store.token != null) navigate("/")
@@ -55,12 +55,14 @@ export const Login = () => {
 							<Form.Control className='text-center' type="password" placeholder="contraseña" value={password} onChange={(e) => setPassword(e.target.value)} />
 						</Form.Group>
 						<div className="text-center mt-3">
-							<Button className='justify-content-center' variant="dark" onClick={handleClick}>
+							<Button className='justify-content-center enviar' onClick={handleClick}>
 								Enviar
 							</Button>
 						</div>
 						<div className="text-center mt-3">
-							¿Quieres registrarte? <Button className="button-69" role="button" onClick={() => navigate("/signup")}>Haz click aquí</Button>
+							¿Quieres registrarte?
+							<hr />
+							<Button className="button-69" role="button" onClick={() => navigate("/signup")}>Haz click aquí</Button>
 						</div>
 					</Form>
 

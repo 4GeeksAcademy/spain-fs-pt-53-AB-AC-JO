@@ -29,7 +29,7 @@ export const Signup = () => {
     return (
         <div className="container text-center mt-5 d-flex justify-content-center">
             <div className="col-md-6">
-                <h5>Bienvenid@, registrate aquí</h5>
+                <h5>Bienvenid@, registrate aquí: </h5>
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email</Form.Label>
@@ -49,15 +49,19 @@ export const Signup = () => {
                     </Form.Group>
                     <Form.Group controlId="visibility">
                         <Form.Label>Visibilidad del perfil</Form.Label>
+                        <hr />
+                        <Form.Text className="text-black">
+                            Si quieres que otros usuarios puedan ver tus reviews, escoge "Pública", de lo contrario, escoge "Privada", no te preocupes, lo podrás modificar más adelante.
+                        </Form.Text>
                         <Form.Select onChange={(e) => setVisibility(e.target.value)}>
                             <option value="public">Pública</option>
                             <option value="private">Privada</option>
                         </Form.Select>
                     </Form.Group>
                     <div className="text-center">
-                        <Button className='justify-content-center mt-3' variant="dark" onClick={handleSubmit}>
+                        <button className='justify-content-center mt-3 enviar' variant="dark" onClick={handleSubmit}>
                             Enviar
-                        </Button>
+                        </button>
                     </div>
                     <div>
                         <a href="#" className="text-decoration-none" onClick={() => { navigate("/login"); }}>
