@@ -58,7 +58,7 @@ export class Search extends React.Component {
 
 		return (
 			<div className="header_content text-center">
-				<h1>Buscador un libro para añadir una review aquí</h1>
+				<h1>Busca un libro para añadir una review aquí: </h1>
 
 				<form id="form" onSubmit={e => this.handleSubmit(e)}>
 					<legend />
@@ -75,9 +75,8 @@ export class Search extends React.Component {
 							onChange={this.handleChange}
 						/>
 					</label>
-					<button  id="search"><i class="fa-brands fa-searchengin"></i></button>
+					<button id="search"><i class="fa-brands fa-searchengin"></i></button>
 				</form>
-				<h1>Mis reviews</h1>
 				<div className="row">
 					{this.state.books && this.state.books.map((book, index) => (
 						<div key={index} className="col-md-4">

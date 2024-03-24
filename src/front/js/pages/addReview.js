@@ -52,22 +52,25 @@ export const AddReview = () => {
         console.error('Error adding review:', error);
         alert("Vaya, ha ocurrido un error añadiendo tu review...");
       });
-  
+
   };
 
   return (
-    <div className="conatainer d-flex">
-      <div className="col-4">
-        <ReviewForm></ReviewForm>
-      </div>
-      <div className="col-8"> 
-        <Form.Group controlId="reviewText">
-          <Form.Label>Reseña</Form.Label>
-          <Form.Control  as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)}  />
-        </Form.Group>
-        <button className="button-71" role="button"  onClick={handleClick}>Añadir review</button>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-12 col-md-6">
+          <ReviewForm></ReviewForm>
+        </div>
+        <div className="col-12 col-md-6 mt-4">
+          <Form.Group controlId="reviewText">
+            <Form.Label className="mb-2"><b>Reseña: </b></Form.Label>
+            <hr className="mb-4" />
+            <Form.Control as="textarea" rows={8} className="w-75" value={comment} onChange={e => setComment(e.target.value)} />
+          </Form.Group>
+          <hr />
+          <button className="button-71" role="button" onClick={handleClick}>Añadir review</button>
+        </div>
       </div>
     </div>
   )
-
 }
