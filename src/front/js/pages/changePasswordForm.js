@@ -30,9 +30,9 @@ export const ChangePasswordForm = () => {
       const response = await fetch(process.env.BACKEND_URL + 'api/user/visibility', {
         method: 'PUT',
         headers: {
-					'Content-Type': 'application/json',
-					'Authorization': 'Bearer ' + sessionStorage.getItem('token')
-				},
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+        },
         body: JSON.stringify({ visibility: userVisibility }),
       });
 
@@ -49,7 +49,7 @@ export const ChangePasswordForm = () => {
       alert("Uh oh, parece que ha ocurrido un error.");
     }
   };
-  
+
 
   return (
     <>
@@ -69,9 +69,9 @@ export const ChangePasswordForm = () => {
           <Form.Control className='text-center input' type="password" placeholder="Confirmar nueva contraseña" value={confirmNewPassword} onChange={(e) => setConfirmNewPassword(e.target.value)} />
         </Form.Group>
 
-        <button className="button-69" role="button" onClick={handleClick}>
+        <Button className='justify-content-center boton' variant="dark" onClick={handleClick}>
           Enviar
-        </button>
+        </Button>
       </Form>
       <Form className="visibilidad">
         <Form.Group className="" controlId="visibility">
@@ -81,10 +81,9 @@ export const ChangePasswordForm = () => {
             <option value="private">Privado</option>
           </Form.Select>
         </Form.Group>
-
-        <button className="button-69" role="button"  onClick={handleSaveVisibility}>
+        <Button className=" btn button-69" onClick={handleSaveVisibility}>
           Actualizar
-        </button>
+        </Button>
       </Form>
     </>
   );

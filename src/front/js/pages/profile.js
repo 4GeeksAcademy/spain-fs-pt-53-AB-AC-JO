@@ -100,15 +100,16 @@ export const Profile = () => {
 
 	useEffect(() => {
 		if (showDeleteConfirmation) {
-		  fetchReviews();
-		  setShowDeleteConfirmation(false);
+			fetchReviews();
+			setShowDeleteConfirmation(false);
 		}
-	  }, [showDeleteConfirmation]);
+	}, [showDeleteConfirmation]);
 
 	return (
 		<div>
 			<Search></Search>
-			<div>
+			<h1 className="text-center">Mis reviews</h1>
+			<div className="reviews-container">
 				{reviews.map((review) => (
 					<div key={review.review_id}>
 						<Card style={{ width: '18rem' }} className="mb-3">

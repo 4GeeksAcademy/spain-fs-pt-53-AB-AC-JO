@@ -5,7 +5,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: null,
 			message: null,
 			error: null,
-			currentUser: null,
+			currentUser: {
+				token: null,
+				visibility: null,
+			},
 			reviews: [],
 			demo: [
 				{
@@ -51,7 +54,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						sessionStorage.setItem("token", data.access_token);
 						sessionStorage.setItem("currentUser", data.user_id);
 						setStore({
-							token: data.access_token,
+							token: data.access_token, currentUser: {
+								token: data.access_token,
+								visibility: data.visibility,
+							},
 						});
 						return true;
 					} else if (res.status === 401) {
@@ -68,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem("currentUser");
 				console.log("session ends")
-				setStore({ token: null })
+				setStore({ token: null, currentUser: null })
 			},
 			register: async (email, password, user, visibility) => {
 				try {
