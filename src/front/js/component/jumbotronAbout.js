@@ -40,7 +40,7 @@ export const JumbotronAbout = () => {
         <>
             <header style={headerStyles}>
                 <Container style={textStyles} fluid={true} className='h-100'>
-                    <Row className="h-100 justify-content-center align-items-center text-center">
+                <Row className="h-100 justify-content-center align-items-center text-center" style={{ boxShadow: "0 16px 24px rgba(0, 0, 0, 0.1), -16px 0 16px rgba(0, 0, 0, 0.1), 16px 0 16px rgba(0, 0, 0, 0.1)" }}>
                         <Col
                             lg={12}
                             className="px-lg-5"

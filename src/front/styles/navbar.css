@@ -4,6 +4,7 @@
   align-items: center;
   padding: 0.35rem;
   box-shadow: 0 16px 24px rgba(0, 0, 0, 0.1), -16px 0 16px rgba(0, 0, 0, 0.1), 16px 0 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .navbar-links {
@@ -23,7 +24,7 @@
   margin-left: 1rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 350px) {
   .navbar-links {
     position: absolute;
     top: 100%;

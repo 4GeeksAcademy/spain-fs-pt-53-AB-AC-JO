@@ -14,7 +14,7 @@ export const Home = () => {
 	const currentUser = sessionStorage.getItem("currentUser");
 
 
-
+	
 	const handleInfo = (review) => {
 		navigate(`/singlereview`, { state: { review: review } });
 	};

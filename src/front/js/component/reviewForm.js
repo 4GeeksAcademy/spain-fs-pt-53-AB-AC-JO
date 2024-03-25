@@ -14,7 +14,7 @@ export const ReviewForm = () => {
 
   return (
     <Card style={{ width: '18rem' }} className="mb-3">
-      <Card.Img variant="top" src={bookImage} />
+      <Card.Img variant="top" src={bookImage} style={{ height: "250px", objectFit: "scale-down" }} />
       <Card.Body >
         <Card.Title>{book.volumeInfo.title}</Card.Title>
         <div>

@@ -42,7 +42,7 @@ export const ModifyReview = () => {
   return (
     <div>
       <Card style={{ width: '18rem' }} className="mb-3">
-        <Card.Img variant="top" src={review?.book?.small_thumbnail} />
+        <Card.Img variant="top" src={review?.book?.small_thumbnail} style={{ height: "250px", objectFit: "scale-down" }} />
         <Card.Body>
           <Card.Title>{review?.book?.title}</Card.Title>
           <Card.Text>
