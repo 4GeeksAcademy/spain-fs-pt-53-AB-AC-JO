@@ -15,7 +15,7 @@ export const SingleReview = () => {
             {review ? (
                 <Card style={{ width: '18rem' }} className="mb-3">
                     {review.book ? (
-                        <Card.Img variant="top" src={review.book.small_thumbnail} />
+                        <img style={{ height: "250px", objectFit: "scale-down" }} src={review.book.thumbnail ? review.book.thumbnail : "http://books.google.com/books/content?id=qEAyEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"} alt={review.book.title} />
                     ) : (
                         <p> Loading Book Thumbnail...</p>
                     )}
@@ -43,6 +43,6 @@ export const SingleReview = () => {
             ) : (
                 <p>Loading...</p>
             )}
-            </div>
+        </div>
     )
-            }
+}

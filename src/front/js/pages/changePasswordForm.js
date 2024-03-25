@@ -19,7 +19,7 @@ export const ChangePasswordForm = () => {
 
     if (newPassword !== confirmNewPassword) {
       setPasswordsMatch(false);
-      alert('New password and confirm new password need to match');
+      alert('La contraseña nueva y confirmar contraseña nueva no coinciden.');
       return;
     }
 
@@ -53,7 +53,7 @@ export const ChangePasswordForm = () => {
 
   return (
     <>
-      <Form className="formulario">
+      <Form className="formulario mt-2">
         <Form.Group className="" controlId="currentPassword">
           <Form.Label className="label">Contraseña actual</Form.Label>
           <Form.Control className='text-center input' type="password" placeholder="Contraseña actual" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} />
@@ -73,7 +73,7 @@ export const ChangePasswordForm = () => {
           Enviar
         </Button>
       </Form>
-      <Form className="visibilidad">
+      <Form className="visibilidad mt-2">
         <Form.Group className="" controlId="visibility">
           <Form.Label className="label">Visibilidad del perfil: </Form.Label>
           <Form.Select className='text-center input' value={userVisibility} onChange={(e) => setUserVisibility(e.target.value)}>

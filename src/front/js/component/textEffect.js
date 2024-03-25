@@ -28,11 +28,11 @@ const useTypingEffect = (text, duration, isTypeByLetter = false) => {
 
 const texts = [
     "Explora un mundo de conocimiento literario con nuestra plataforma de reseñas de libros.",
-    "Cada página es una nueva aventura por descubrir",
+    "Cada página es una nueva aventura por descubrir.",
     "Descubre tu próxima lectura favorita con nuestras reseñas detalladas y opiniones de lectores reales.",
-    "Navega por un mar de palabras y opiniones con nuestra comunidad de amantes de la lectura",
-    "Encuentra la reseña perfecta para el libro que siempre has querido leer",
-    "Conviértete en un experto en literatura con nuestra biblioteca virtual de reseñas de libros",
+    "Navega por un mar de palabras y opiniones con nuestra comunidad de amantes de la lectura.",
+    "Encuentra la reseña perfecta para el libro que siempre has querido leer.",
+    "Conviértete en un experto en literatura con nuestra biblioteca virtual de reseñas de libros.",
     "¿Buscas una guía confiable para tus próximas lecturas? No busques más.",
     "Nuestra plataforma de reseñas de libros te ofrece críticas honestas y perspicaces para ayudarte a elegir tu próximo libro.",
     "Tu próxima gran historia te espera.",
