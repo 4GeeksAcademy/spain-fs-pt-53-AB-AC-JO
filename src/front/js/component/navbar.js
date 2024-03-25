@@ -8,6 +8,7 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const handleClick = () => {
 		actions.logout()
+		navigate('/')
 	}
 	const navigate = useNavigate();
 	const handleModify = () => {
@@ -15,11 +16,16 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar sticky-top" boxshadow="0 16px 24px rgba(0,0,0,0.5)">
+		<nav className="navbar sticky-top mx-3">
 			<Link to="/">
 				<Logo />
 			</Link>
 			<div className=" navbar-links ml-auto">
+				<Link to="/about">
+					<button className="button-about" role="button">
+						About
+					</button>
+				</Link>
 				{!store.token ? (
 					<div className="navbar-buttons">
 						<Link to="/login">

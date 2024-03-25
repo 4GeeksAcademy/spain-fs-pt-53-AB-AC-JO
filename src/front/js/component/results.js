@@ -8,9 +8,11 @@ export const Results = ({ book }) => {
   const handleAddReview = () => {
     navigate('/addreview', { state: { book: book } });
   };
+  const bookImage = book.volumeInfo.imageLinks?.thumbnail ? book.volumeInfo.imageLinks?.thumbnail : "http://books.google.com/books/content?id=qEAyEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
+  
   return (
-    <Card style={{ width: '18rem' }} className="mb-3">
-      <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
+    <Card style={{ margin: "0 auto" }} className="mb-3">
+      <Card.Img style={{ height: "250px", objectFit: "scale-down" }} variant="top" src={bookImage} />
       <Card.Body>
         <Card.Title>{book.volumeInfo.title}</Card.Title>
         <Card.Text>

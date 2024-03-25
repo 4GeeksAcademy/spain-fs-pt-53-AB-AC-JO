@@ -62,7 +62,7 @@ export const ModifyReview = () => {
             <Form.Label><strong>Review nueva:</strong></Form.Label>
             <Form.Control as="textarea" rows={3} value={comment} onChange={e => setComment(e.target.value)} />
           </Form.Group>
-          <button className="button-modify" role="button" onClick={handleSaveChanges}>Modificar review</button>
+          <button className="button-modify mt-2" role="button" onClick={handleSaveChanges}>Modificar review</button>
         </Card.Body>
       </Card>
     </div>

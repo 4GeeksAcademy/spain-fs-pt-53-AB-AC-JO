@@ -1,4 +1,4 @@
-.about {
+/* .about {
     margin-top: 25px;
     text-align: center;
     display: flex;
@@ -27,3 +27,11 @@
     background-color: black;
 
 }
+
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    padding-top: 25px;
+} */
