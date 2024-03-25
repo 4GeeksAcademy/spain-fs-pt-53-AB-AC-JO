@@ -7,11 +7,14 @@
   justify-content: space-between;
   transition: background-color 0.3s ease;
   height: 600px !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
 
 .home-card:hover {
   box-shadow: rgba(36, 97, 59, 0.4) -5px 5px, rgba(36, 97, 59, 0.3) -10px 10px, rgba(36, 97, 59, 0.2) -15px 15px, rgba(36, 97, 59, 0.1) -20px 20px, rgba(36, 97, 59, 0.05) -25px 25px, rgba(104, 166, 125, 0.4) 5px 5px, rgba(104, 166, 125, 0.3) 10px 10px, rgba(104, 166, 125, 0.2) 15px 15px, rgba(104, 166, 125, 0.1) 20px 20px, rgba(104, 166, 125, 0.05) 25px 25px;
 }
+
 
 .reviewhome {
   background-color: #8FBF9F;
