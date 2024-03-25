@@ -75,7 +75,7 @@ export class Search extends React.Component {
 							onChange={this.handleChange}
 						/>
 					</label>
-					<button id="search"><i class="fa-brands fa-searchengin"></i></button>
+					<button id="search"><i className="fa-brands fa-searchengin"></i></button>
 				</form>
 				<div className="row">
 					{this.state.books && this.state.books.map((book, index) => (
