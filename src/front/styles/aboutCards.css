@@ -1,0 +1,46 @@
+.about-cards-container {
+  display: grid;
+  height: 50vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "top"
+    "bottom";
+}
+
+.top-left-corner {
+  grid-area: top;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-right-corner {
+  grid-area: bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mySwiper {
+  width: 90%;
+  height: 90%;
+}
+
+/* Swiper slide styles */
+.swiper-slide {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Example of customizing the card appearance */
+.cardAbout-body {
+  background-color: #f1f1f1;
+  padding: 1rem;
+}
+
+.cardAbout-title {
+  margin-bottom: 0.5rem;
+}
