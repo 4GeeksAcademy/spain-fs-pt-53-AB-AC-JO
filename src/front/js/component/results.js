@@ -8,9 +8,10 @@ export const Results = ({ book }) => {
   const handleAddReview = () => {
     navigate('/addreview', { state: { book: book } });
   };
+  const bookImage = book.volumeInfo.imageLinks?.thumbnail ? book.volumeInfo.imageLinks?.thumbnail : "https://media.istockphoto.com/id/157482029/es/foto/pila-de-libros.jpg?s=612x612&w=0&k=20&c=KYCi5g_Y3D6chjEYCFm7EP3NUKHExrO3jXHrs9ZtV04=";
   return (
-    <Card style={{ width: '18rem' }} className="mb-3">
-      <Card.Img variant="top" src={book.volumeInfo.imageLinks?.thumbnail} />
+    <Card style={{ margin: "0 auto" }} className="mb-3">
+      <Card.Img style={{ height: "250px", objectFit: "scale-down" }} variant="top" src={bookImage} />
       <Card.Body>
         <Card.Title>{book.volumeInfo.title}</Card.Title>
         <Card.Text>

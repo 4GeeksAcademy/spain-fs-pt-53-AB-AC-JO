@@ -8,6 +8,7 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 	const handleClick = () => {
 		actions.logout()
+		navigate('/')
 	}
 	const navigate = useNavigate();
 	const handleModify = () => {

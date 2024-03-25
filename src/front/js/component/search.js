@@ -60,7 +60,7 @@ export class Search extends React.Component {
 			<div className="header_content text-center">
 				<h1>Busca un libro para añadir una review aquí: </h1>
 
-				<form id="form" onSubmit={e => this.handleSubmit(e)}>
+				<form id="form" className="pb-2" onSubmit={e => this.handleSubmit(e)}>
 					<legend />
 
 					<label className='searchlabel' htmlFor="searchTerm">

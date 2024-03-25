@@ -14,6 +14,9 @@ const About = () => {
       <div>
         <AboutCards></AboutCards>
       </div>
+      <div>
+        Placeholder agradecimientos imagen jumbrotron y Logo web.
+      </div>
     </>
   );
 };

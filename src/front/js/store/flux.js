@@ -92,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 
 					if (res.status === 200) {
-						alert("Successful registration");
+						alert("Se ha registrado correctamente");
 						return true;
 					} else if (res.status === 401) {
 						const errorData = await res.json();
