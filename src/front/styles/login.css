@@ -1,5 +1,5 @@
 .container {
-  width: 320px;
+  width: 100%;
   border-radius: 0.75rem;
   background-color: #8FBF9F;
   padding: 2rem;
@@ -52,4 +52,28 @@
 
 .enviar:hover {
   box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}
+
+@media (min-width: 576px) {
+  .container {
+    width: 320px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 440px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 560px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 720px;
+  }
 }

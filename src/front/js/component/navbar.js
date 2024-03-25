@@ -20,6 +20,11 @@ export const Navbar = () => {
 				<Logo />
 			</Link>
 			<div className=" navbar-links ml-auto">
+				<Link to="/about">
+					<button className="button-about" role="button">
+						About
+					</button>
+				</Link>
 				{!store.token ? (
 					<div className="navbar-buttons">
 						<Link to="/login">
