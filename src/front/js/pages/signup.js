@@ -59,9 +59,9 @@ export const Signup = () => {
                         </Form.Select>
                     </Form.Group>
                     <div className="text-center">
-                        <button className='justify-content-center mt-3 enviar' variant="dark" onClick={handleSubmit}>
+                        <Button className='justify-content-center mt-3 enviar' variant="dark" onClick={handleSubmit}>
                             Enviar
-                        </button>
+                        </Button>
                     </div>
                     <div>
                         <a href="#" className="text-decoration-none" onClick={() => { navigate("/login"); }}>
