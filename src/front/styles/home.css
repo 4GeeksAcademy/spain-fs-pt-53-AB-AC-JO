@@ -7,11 +7,9 @@
   justify-content: space-between;
   transition: background-color 0.3s ease;
   height: 600px !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.swiper-slide:hover {
-  background-color: #24613b;
-}
 
 .reviewhome {
   background-color: #8FBF9F;
