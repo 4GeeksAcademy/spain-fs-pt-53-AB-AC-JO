@@ -14,6 +14,7 @@ export const Profile = () => {
 	const deleteButtonsRef = useRef([]);
 	const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
+
 	const handleModifyReview = (review) => {
 		navigate('/modifyreview', { state: { review: review, review_id: review.review_id } });
 	};
@@ -113,7 +114,7 @@ export const Profile = () => {
 				{reviews.map((review) => (
 					<div key={review.review_id}>
 						<Card style={{ width: '18rem' }} className="mb-3">
-							<Card.Img variant="top" src={review.book.small_thumbnail} />
+							<img style={{ height: "250px", objectFit: "scale-down" }} src={review.book.thumbnail ? review.book.thumbnail : "http://books.google.com/books/content?id=qEAyEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"} alt={review.book.title} />
 							<Card.Body>
 								<Card.Title>{review.book.title}</Card.Title>
 								<Card.Text>

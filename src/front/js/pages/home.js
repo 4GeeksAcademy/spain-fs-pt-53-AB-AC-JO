@@ -14,6 +14,7 @@ export const Home = () => {
 	const currentUser = sessionStorage.getItem("currentUser");
 
 
+
 	const handleInfo = (review) => {
 		navigate(`/singlereview`, { state: { review: review } });
 	};
@@ -85,17 +86,17 @@ export const Home = () => {
 	}, [reviews]);
 
 	return (
-		<div className="text-center custom-cursor" >
+		<div className="text-center mx-3">
 			<Jumbotron></Jumbotron>
 			<h2 className="my-5">Aquí puedes ver las reviews de nuestros usuarios:</h2>
-			<div className="swiper">
+			<div className="swiper pb-3 px-3">
 				<div className="swiper-wrapper">
 					{reviews.filter(review => review.user_id !== parseInt(currentUser))
 						.map((review) => (
 							<div key={review.review_id} className="swiper-slide home-card">
 								<div style={{ height: '275px' }}>
 									<React.Fragment>
-										<img src={review.book.thumbnail} alt={review.book.title} />
+										<img src={review.book.thumbnail ? review.book.thumbnail : "http://books.google.com/books/content?id=qEAyEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"} alt={review.book.title} />
 										<div>
 											<h3 style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{review.book.title}</h3>
 											<h4>{review.book.author}</h4>

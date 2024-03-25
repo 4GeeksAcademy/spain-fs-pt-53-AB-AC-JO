@@ -25,14 +25,19 @@
 .mySwiper {
   width: 90%;
   height: 90%;
+  background-color: #c2baa6;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Swiper slide styles */
-.swiper-slide {
+.swiper-slide2 {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Example of customizing the card appearance */

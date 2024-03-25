@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.35rem;
-  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.1), -16px 0 16px rgba(0, 0, 0, 0.1), 16px 0 16px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-links {
@@ -46,7 +46,8 @@
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
-.button-about{
+
+.button-about {
   appearance: none;
   backface-visibility: hidden;
   background-color: #1e8449;

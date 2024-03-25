@@ -16,7 +16,7 @@ export const Navbar = () => {
 	}
 
 	return (
-		<nav className="navbar sticky-top" boxshadow="0 16px 24px rgba(0,0,0,0.5)">
+		<nav className="navbar sticky-top mx-3">
 			<Link to="/">
 				<Logo />
 			</Link>
