@@ -28,8 +28,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
-
 			syncToken: async () => {
 				const token = sessionStorage.getItem("token");
 				console.log("Session loading getting token")
@@ -158,33 +156,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error('Error changing password:', error);
 					return false;
 				}
-			},
-
-
-			getPublicReviews() { 				// Testing not done yet, cross your fingers
-				return async () => {
-					try {
-						const resp = await fetch(backUrl + '/api/reviews', {
-							method: 'GET',
-							headers: {
-								'Content-Type': 'application/json'
-							}
-						});
-
-						if (!resp.ok) {
-							throw new Error('Network response was not ok');
-						}
-
-						const data = await resp.json();
-
-						// Dispatch the GET_REVIEWS_SUCCESS action with the response data
-						setStore({ reviews: data });
-
-					} catch (error) {
-						// Dispatch the GET_REVIEWS_FAILURE action with the error message
-						setStore({ error: error.message });
-					}
-				};
 			},
 			changeColor: (index, color) => {
 				//get the store

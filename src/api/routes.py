@@ -17,14 +17,9 @@ from flask_jwt_extended import JWTManager
 api = Blueprint('api', __name__)
 
 
-# Allow CORS requests to this API
-
 CORS(api, resources={r"/api/*": {"origins": os.getenv('FRONTEND_URL')}})
 
 
-
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
 @api.route("/token", methods=["POST"])
 def create_token():
     
