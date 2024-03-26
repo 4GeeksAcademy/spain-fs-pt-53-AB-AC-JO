@@ -1,30 +1,28 @@
-.formulario {
+.searchinput {
     align-items: center;
     text-align: center;
     margin-top: 25px;
     padding-top: 20px;
-    background-color: #68a67d; /* Fondo naranja */
+    background-color: #f1ddad;
+    /* Fondo naranja */
     padding: 20px;
     margin: auto;
-    border-radius: 10px; /* Bordes redondeados */
+    border-radius: 10px;
+    /* Bordes redondeados */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Ancho del formulario */
-    
+    border-color: #f1ddad;
+    height: 40px;
+
 }
 
-  .label {
-    display: block;
-    margin-bottom: 5px;
-    text-align: center;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-   
-  .button-69 {
+.searchinput:hover {
+    background-color: #eea941;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: .35s;
+}
+
+#search {
     appearance: none;
     backface-visibility: hidden;
     background-color: #F18F01;
@@ -35,9 +33,9 @@
     color: #fff;
     cursor: pointer;
     display: inline-block;
-    font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: normal;
     line-height: 1.5;
     outline: none;
@@ -53,33 +51,20 @@
     touch-action: manipulation;
     vertical-align: top;
     white-space: nowrap;
-  }
-  
-  .button-69:hover {
+}
+
+#search:hover {
     background-color: #eea941;
     opacity: 1;
     transform: translateY(0);
     transition-duration: .35s;
-  }
-  
-  .button-69:active {
+}
+
+#search:active {
     transform: translateY(2px);
     transition-duration: .35s;
-  }
-  
-  .button-69:hover {
-    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
-  }
+}
 
-  .visibilidad{
-    align-items: center;
-    text-align: center;
-    margin-top: 25px;
-    padding-top: 20px;
-    background-color: #8FBF9F; /* Fondo naranja */
-    padding: 20px;
-    margin: auto;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Ancho del formulario */
-  }
+#search:hover {
+    box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}

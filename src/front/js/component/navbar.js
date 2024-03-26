@@ -1,31 +1,56 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/navbar.css";
-import Logo from "./logo";
+import Logo from "../component/logo"
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-
 	const handleClick = () => {
 		actions.logout()
+		navigate('/')
+	}
+	const navigate = useNavigate();
+	const handleModify = () => {
+		navigate('/updateprofile')
 	}
 
 	return (
-		<nav className="navbar navbar-light" style={{backgroundColor: "#5f5f5f"}}>
-			<div className="container">
-				<Link to="/">
-					<Logo />
+		<nav className="navbar sticky-top mx-3">
+			<Link to="/">
+				<Logo />
+			</Link>
+			<div className=" navbar-links ml-auto">
+				<Link to="/about">
+					<button className="button-about" role="button">
+						About
+					</button>
 				</Link>
-				<div className="ml-auto">
-					{!store.token ? <Link to="/login">
-						<button className="btn btn-success">Log in</button>
-					</Link> :
-						<button onClick={handleClick} className="btn btn-danger">Log out</button>
-					}
-
-				</div>
+				{!store.token ? (
+					<div className="navbar-buttons">
+						<Link to="/login">
+							<button className="button-68" role="button">Log in</button>
+						</Link>
+						<Link to="/signup">
+							<button className="button-69" role="button"> Signup </button>
+						</Link>
+					</div>
+				) : (
+					<div className="navbar-buttons">
+						<button onClick={handleClick} className="button-70" role="button">
+							<i className="fa-sharp fa-solid fa-right-from-bracket"></i>
+						</button>
+						<Link to="/profile">
+							<button className="button-68" role="button">
+								<i className="fa-regular fa-user"></i>
+							</button>
+						</Link>
+						<button className="button-71" role="button" onClick={handleModify}>
+							<i className="fa-solid fa-gear"></i>
+						</button>
+					</div>
+				)}
 			</div>
 		</nav>
 	);
-};
+}

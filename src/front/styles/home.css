@@ -1,7 +1,108 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.home-card {
+  background-color: #68a67d;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+  height: 600px !important;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-family: fantasy;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+
+.home-card:hover {
+  box-shadow: rgba(36, 97, 59, 0.4) -5px 5px, rgba(36, 97, 59, 0.3) -10px 10px, rgba(36, 97, 59, 0.2) -15px 15px, rgba(36, 97, 59, 0.1) -20px 20px, rgba(36, 97, 59, 0.05) -25px 25px, rgba(104, 166, 125, 0.4) 5px 5px, rgba(104, 166, 125, 0.3) 10px 10px, rgba(104, 166, 125, 0.2) 15px 15px, rgba(104, 166, 125, 0.1) 20px 20px, rgba(104, 166, 125, 0.05) 25px 25px;
+}
+
+
+.reviewhome {
+  background-color: #8FBF9F;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+  height: 150px;
+}
+
+
+.review-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-family: monospace !important;
+  font-weight: 600;
+}
+
+.swiper-slide img {
+  max-width: 100%;
+  height: auto;
+}
+
+.swiper-slide h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.swiper-slide h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.swiper-slide p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.button-masinfo-home {
+  margin-top: 10px;
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #5f5f5f;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(39, 174, 96, .15) 0 4px 9px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter, -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 10px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+
+}
+
+.button-masinfo:hover {
+  background-color: #ebe2cd;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+.button-masinfo:active {
+  transform: translateY(2px);
+  transition-duration: .35s;
+}
+
+.button-masinfo:hover {
+  box-shadow: rgba(39, 174, 96, .2) 0 6px 12px;
+}

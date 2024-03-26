@@ -1,0 +1,57 @@
+.book-card {
+    width: 100%;
+    margin: auto;
+    border: 1px solid #C2BAA6;
+    border-radius: 10px;
+    margin-top: 15px;
+    background-color: #EBE2CD;
+  }
+  .card-body {
+    display: flex;
+  }
+  .left-content {
+    flex: 1;
+  }
+  .right-content {
+    flex: 2;
+    padding: 1rem;
+  }
+  .book-image {
+    width: 100%;
+    height: auto;
+    max-width: 200px; /* Ajusta el tamaño máximo según sea necesario */
+  }
+  .review-input {
+    background-color: #5F5F5F; /* Cambia el color de fondo del campo de reseña */
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .btn-custom {
+    background-color: #68A67D;
+    border-color: #68A67D;
+  }
+  .btn-custom:hover {
+    background-color: #5C8F66;
+    border-color: #5C8F66;
+  }
+  .btn-custom:focus,
+  .btn-custom.focus {
+    box-shadow: 0 0 0 0.2rem rgba(104, 166, 125, 0.5);
+  }
+  .btn-custom:active,
+  .btn-custom.active {
+    background-color: #4E7A57;
+    border-color: #4E7A57;
+  }
+  @media (max-width: 768px) {
+    .card-body2 {
+      flex-direction: column;
+    }
+    .left-content2, .right-content2 {
+      flex: none;
+      width: 100%;
+    }
+  }
