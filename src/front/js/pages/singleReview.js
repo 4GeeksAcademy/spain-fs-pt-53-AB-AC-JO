@@ -31,7 +31,7 @@ export const SingleReview = () => {
                         <Card.Text>
                             <strong>Fecha de publicación:</strong> {new Date(review.book.published_year).toLocaleDateString()}
                         </Card.Text>
-                        <Card.Text>
+                        <Card.Text style={{fontFamily: 'monospace', fontWeight: 600}}>
                             <strong>Review:</strong> {review.comment}
                         </Card.Text>
                         <Card.Text>

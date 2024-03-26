@@ -63,7 +63,7 @@ export const AddReview = () => {
         </div>
         <div className="col-12 col-md-6 mt-4">
           <Form.Group controlId="reviewText">
-            <Form.Label className="mb-2"><b>Reseña: </b></Form.Label>
+            <Form.Label className="mb-2"><b>Review: </b></Form.Label>
             <hr className="mb-4" />
             <Form.Control as="textarea" rows={8} className="w-75" value={comment} onChange={e => setComment(e.target.value)} />
           </Form.Group>

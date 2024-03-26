@@ -128,7 +128,7 @@ export const Profile = () => {
 									<strong>Fecha de publicación:</strong> {new Date(review.book.published_year).toLocaleDateString()}
 								</Card.Text>
 								<Card.Text>
-									<strong>Comentario:</strong> {review.comment}
+									<strong>Review:</strong> {review.comment}
 								</Card.Text>
 								<button className="button-modify" role="button" onClick={() => handleModifyReview(review)}>Modificar review</button>
 								<button className="button-delete" role="button"

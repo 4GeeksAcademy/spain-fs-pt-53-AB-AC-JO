@@ -1,4 +1,3 @@
-
 .home-card {
   background-color: #68a67d;
   padding: 20px;
@@ -9,6 +8,7 @@
   transition: background-color 0.3s ease;
   height: 600px !important;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  font-family: fantasy;
 }
 
 
@@ -34,6 +34,8 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  font-family: monospace !important;
+  font-weight: 600;
 }
 
 .swiper-slide img {
