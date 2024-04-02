@@ -10,27 +10,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				visibility: null,
 			},
 			reviews: [],
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
 			syncToken: async () => {
 				const token = sessionStorage.getItem("token");
-				console.log("Session loading getting token")
 				if (token && token != "" && token != undefined && token != null) await setStore({ token: token })
 			},
 
@@ -64,14 +47,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 				} catch (error) {
-					console.error("Ha ocurrido un error:", error);
 					return false;
 				}
 			},
 			logout: () => {
 				sessionStorage.removeItem("token");
 				sessionStorage.removeItem("currentUser");
-				console.log("session ends")
 				setStore({ token: null, currentUser: null })
 			},
 			register: async (email, password, user, visibility) => {
@@ -98,7 +79,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false
 					};
 				} catch (error) {
-					console.error("Ha ocurrido un error:", error);
 					return false;
 				}
 			},
@@ -112,10 +92,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 					const data = await resp.json()
 					setStore({ message: data.message })
-					console.log(data.message)
 					return data;
 				} catch (error) {
-					console.log("Error cargando mensaje del backend", error)
 				}
 			},
 			getUser: async () => {
@@ -130,7 +108,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ message: data.message })
 					return data;
 				} catch (error) {
-					console.log("Error cargando mensaje del backend", error)
 				}
 			},
 			changepassword: async (currentPassword, newPassword) => {
@@ -153,23 +130,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						throw new Error('Failed to change password');
 					}
 				} catch (error) {
-					console.error('Error changing password:', error);
 					return false;
 				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			},
 		},
 

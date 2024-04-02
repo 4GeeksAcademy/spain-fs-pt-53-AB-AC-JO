@@ -32,21 +32,16 @@ export const Profile = () => {
 
 			if (!response.ok) {
 				if (response.status === 401) {
-					// Handle unauthorized errors (e.g., token expired or invalid)
-					console.error('Unauthorized');
+
 				} else {
-					// Handle other errors
-					console.error('Error:', response.statusText);
+
 				}
 				return;
 			}
 
 			const reviews = await response.json();
-			setReviews(reviews); // Update the state with parsed reviews here
-			console.log('Current user reviews:', reviews);
-			// Process the reviews data as needed
+			setReviews(reviews);
 		} catch (error) {
-			console.error('Error:', error);
 		}
 
 	};
@@ -83,7 +78,6 @@ export const Profile = () => {
 			}
 
 			const data = await response.json();
-			console.log(data.message);
 			alert('La review ha sido eliminada!');
 
 			// Find the index of the button in the deleteButtonsRef array
@@ -94,7 +88,6 @@ export const Profile = () => {
 				setReviews(reviews => reviews.filter(review => review.review_id !== parseInt(reviewId)));
 			}
 		} catch (error) {
-			console.error(error);
 		}
 		setShowDeleteConfirmation(true);
 	};

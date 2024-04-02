@@ -27,14 +27,12 @@ export const ModifyReview = () => {
       }
 
       const data = await response.json();
-      console.log(data.message);
 
       alert("¡Review modificada correctamente!");
       setTimeout(() => {
         navigate("/profile");
       }, 0);
     } catch (error) {
-      console.error("Error updating review:", error);
       alert("Vaya, ha ocurrido un error modificando tu review...");
     }
   };

@@ -17,7 +17,7 @@ from flask_jwt_extended import JWTManager
 api = Blueprint('api', __name__)
 
 
-CORS(api, resources={r"/api/*": {"origins": os.getenv('FRONTEND_URL')}})
+CORS(api, resources={r"/api/*": {"origins": os.getenv('ORIGINS_URL')}})
 
 
 @api.route("/token", methods=["POST"])

@@ -15,18 +15,3 @@
     opacity: 0;
     transform: translateY(2px);
 }
-
-/* .circle-effect {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 2px;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    transition: transform 300ms;
-    background-color: black;
-}
-
-.circle-effect-hidden {
-    transform: scale(0);
-} */

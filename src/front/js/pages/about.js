@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../styles/about.css";
 import { JumbotronAbout } from "../component/jumbotronAbout";
 import { AboutCards } from "../component/aboutCards";
 

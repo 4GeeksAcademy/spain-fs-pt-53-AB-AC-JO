@@ -4,10 +4,10 @@ import { Results } from "./results"
 import "../../styles/search.css";
 
 
-const apiKey = process.env.API_KEY
+const apiKey = process.env.API_KEY;
 const apiURL = "https://www.googleapis.com/books/v1/volumes";
-const fields = "fields=items(id,volumeInfo(title,subtitle,authors,imageLinks(thumbnail,smallThumbnail),publishedDate,pageCount))"
-
+const fields = "fields=items(id,volumeInfo(title,subtitle,authors,imageLinks(thumbnail,smallThumbnail),publishedDate,pageCount))";
+console.log(process.env.API_KEY)
 export class Search extends React.Component {
 	state = {
 		searchTerm: '',
@@ -27,7 +27,7 @@ export class Search extends React.Component {
 	}
 
 	fetchBooks = () => {
-		const getURL = `${apiURL}?key=${apiKey}&langRestrict=es,en&maxResults=5&orderBy=relevance&q=${this.state.searchTerm}&${fields}`;
+		const getURL = `${apiURL}?key=${apiKey}&langRestrict=es,en&maxResults=6&orderBy=relevance&q=${this.state.searchTerm}&${fields}`;
 
 		trackPromise(
 			fetch(getURL)
