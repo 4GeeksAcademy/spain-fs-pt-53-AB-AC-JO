@@ -16,14 +16,10 @@ from flask_jwt_extended import JWTManager
 
 api = Blueprint('api', __name__)
 
-# Hay que modificar la URL de puerto 3000 (Nuestro front) en la línea 21 y 210!!!!
 
-# Allow CORS requests to this API
-CORS(api, resources={r"/api/*": {"origins": 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev:3000/'}})
+CORS(api, resources={r"/api/*": {"origins": os.getenv('ORIGINS_URL')}})
 
 
-# Create a route to authenticate your users and return JWTs. The
-# create_access_token() function is used to actually generate the JWT.
 @api.route("/token", methods=["POST"])
 def create_token():
     
@@ -45,7 +41,7 @@ def create_token():
         return jsonify({"msg": "Email o contraseña incorrectos"}), 401
 
     access_token = create_access_token(identity=email)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token=access_token, user_id=user.id, visibility=user.visibility)
 
 
 @api.route("/hello", methods=["GET"])
@@ -116,7 +112,29 @@ def change_password():
     db.session.commit()
 
     return jsonify({"msg": "Password changed successfully"}), 200
-    
+
+@api.route('/user/visibility', methods=['PUT'])
+@jwt_required()
+def update_user_visibility():
+    email = get_jwt_identity()
+    user_query = User.query.filter_by(email=email).first()
+    if not user_query:
+        return jsonify({"msg": "Email not found"}), 401
+
+    data = request.json
+    if 'visibility' not in data:
+        return jsonify(error='Missing visibility field in the request body'), 400
+
+    updated_visibility = data['visibility']
+    if updated_visibility not in ['public', 'private']:
+        return jsonify(error='Invalid visibility. Must be "public" or "private".'), 400
+
+    user = User.query.filter_by(email=email).first()
+    user.visibility = updated_visibility
+    db.session.commit()
+
+    return jsonify(User.serialize(user)), 200
+   
 @api.route("/privateuser", methods=["GET"])
 @jwt_required()
 def get_user():
@@ -161,13 +179,13 @@ def add_review():
 
     return jsonify({'message': 'Reseña añadida correctamente'})
 
-@api.route('/reviews', methods=['GET'])  # Obtiene todas las reviews de usuarios con visibilidad 'public'
-def get_reviews():
-    reviews = Review.query.filter(Review.user.has(User.visibility == 'public')).all()
+@api.route('/reviews', methods=['GET'])
+def get_public_reviews():
+    reviews = Review.query.join(User).join(Book).filter(User.visibility == 'public').all()
     result = []
     for review in reviews:
         review_data = review.serialize()
-        review_data['book'] = review.book.serialize()
+        review_data['username'] = review.user.username
         result.append(review_data)
     return jsonify(result)
 
@@ -181,7 +199,7 @@ def get_review(review_id):
 @jwt_required()
 def update_review_comment(review_id):
     email = get_jwt_identity()
-    review = Review.query.join(User, Review.user_id == User.id).filter(Review.id == review_id, User.email == email).first()
+    review = Review.query.join(User, Review.user_id == User.id).filter(Review.review_id == review_id, User.email == email).first()
     if review is None:
         return jsonify({'error': 'No está autorizado para modificar esta review'}), 401
 
@@ -198,7 +216,7 @@ def update_review_comment(review_id):
 @jwt_required()
 def delete_review(review_id):
     email = get_jwt_identity()
-    review = Review.query.join(User, Review.user_id == User.id).filter(Review.id == review_id, User.email == email).first()
+    review = Review.query.join(User, Review.user_id == User.id).filter(Review.review_id == review_id, User.email == email).first()
     if review is None:
         return jsonify({'error': 'No autorizado, sólo el creador de la reseña puede borrarla'}), 401
 
@@ -221,7 +239,7 @@ def get_current_user_reviews():
 
 @api.after_request
 def add_cors_headers(response):
-   response.headers['Access-Control-Allow-Origin'] = 'https://crispy-space-umbrella-4j79xjxrj54j2qrpj-3000.app.github.dev'
+   response.headers['Access-Control-Allow-Origin'] = os.getenv('FRONTEND_URL')
    response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
    response.headers['Access-Control-Allow-Methods'] = 'GET,PUT,POST,DELETE'
    return response
